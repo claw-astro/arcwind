@@ -1,5 +1,8 @@
 # diskwind
 
+[![tests](https://github.com/USERNAME/diskwind/actions/workflows/tests.yml/badge.svg)](https://github.com/USERNAME/diskwind/actions/workflows/tests.yml)
+[![docs](https://github.com/USERNAME/diskwind/actions/workflows/docs.yml/badge.svg)](https://USERNAME.github.io/diskwind/)
+
 Geometry and kinematics of protoplanetary disk winds from line cubes, by fitting
 a rotating, expanding **conical wind** to the position–velocity (PV) diagrams of
 many cuts perpendicular to the wind axis.
@@ -57,7 +60,9 @@ wa.fit(radial="proportional", fixed={"xslope": 0.0}, loss="soft_l1", n_boot=0)
 | `docs/` | Sphinx documentation (Read the Docs: `.readthedocs.yaml`) |
 | `tests/` | pytest suite on a synthetic cube |
 
-Build the documentation locally with `pip install -e ".[docs]"` and
+Documentation: built automatically on every push to `main` (GitHub Pages,
+`.github/workflows/docs.yml`) or on Read the Docs (`.readthedocs.yaml`).
+Build it locally with `pip install -e ".[docs]"` and
 `sphinx-build docs docs/_build/html`.
 
 ## Citing

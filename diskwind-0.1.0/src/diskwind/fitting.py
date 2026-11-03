@@ -561,7 +561,8 @@ class FitResult:
             return "\n".join(["| parameter | value | error |", "|---|---|---|"] +
                              [f"| {a} | {b} | {c} |" for a, b, c in rows])
         if fmt == "latex":
-            return "\n".join([f"{a.replace('_', r'\_')} & {b} & {c} \\\\" for a, b, c in rows])
+            esc = [(a.replace("_", "\\_"), b, c) for a, b, c in rows]
+            return "\n".join(f"{a} & {b} & {c} \\\\" for a, b, c in esc)
         return "\n".join(f"{a:10s} {b:>12s} {c:>10s}" for a, b, c in rows)
 
     def __repr__(self):

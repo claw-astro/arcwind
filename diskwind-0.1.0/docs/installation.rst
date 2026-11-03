@@ -1,7 +1,7 @@
 Installation
 ============
 
-diskwind needs Python 3.9 or later, with numpy, scipy and matplotlib.
+diskwind needs Python 3.8 or later (3.10+ recommended), with numpy, scipy and matplotlib.
 
 .. code-block:: bash
 

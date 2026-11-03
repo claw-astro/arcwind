@@ -7,7 +7,7 @@ name = "diskwind"
 dynamic = ["version"]
 description = "Geometry and kinematics of protoplanetary disk winds from transverse position-velocity diagrams"
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.8"
 license = {text = "MIT"}
 authors = [{name = "Charles J. Law"}]
 keywords = ["astronomy", "protoplanetary disks", "disk winds", "ALMA", "kinematics"]
@@ -17,7 +17,7 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Astronomy",
     "License :: OSI Approved :: MIT License",
 ]
-dependencies = ["numpy>=1.22", "scipy>=1.8", "matplotlib>=3.5", "tomli>=1.1; python_version<'3.11'"]
+dependencies = ["numpy>=1.21", "scipy>=1.7", "matplotlib>=3.5", "tomli>=1.1; python_version<'3.11'"]
 
 [project.optional-dependencies]
 fits = ["astropy>=5"]

@@ -20,8 +20,9 @@ __all__ = ["main"]
 
 
 def _cmd_init(a):
-    from importlib import resources
-    txt = resources.files("diskwind").joinpath("data/template.toml").read_text()
+    import os
+    with open(os.path.join(os.path.dirname(__file__), "data", "template.toml")) as fh:
+        txt = fh.read()
     with open(a.path, "w") as fh:
         fh.write(txt)
     print(f"wrote {a.path}: fill in the [source] block, then `diskwind check {a.path}`")
