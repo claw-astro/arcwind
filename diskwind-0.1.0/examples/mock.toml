@@ -1,0 +1,119 @@
+# diskwind configuration (values 'auto' = unset / automatic)
+
+[source]
+fits_file = "mock_cube.fits"
+name = "mock"
+distance_pc = 138.0
+mstar_msun = 0.48
+inclination_deg = 49.0
+disk_pa_deg = 153.2
+wind_pa_deg = 63.2
+wind_approaching = "auto"
+disk_rotation_sense = "auto"
+vsys_kms = "auto"
+vsys_err_kms = 0.1
+vsys_aperture_arcsec = 1.5
+center_ra = "auto"
+center_dec = "auto"
+center_offset_arcsec = [0.05, -0.03]
+restfreq_hz = 230538000000.0
+
+[grid]
+x_half_width_arcsec = 3.0
+y_range_arcsec = [-1.5, 4.0]
+step_arcsec = "auto"
+v_range_kms = [-12.0, 18.0]
+units = "mJy/beam"
+
+[noise]
+n_edge_channels = 10
+vel_ranges_kms = "auto"
+rms_jy_beam = "auto"
+
+[cuts]
+y_offsets_arcsec = {start = 0.15, stop = 2.0, step = 0.1}
+slit_width_arcsec = "auto"
+
+[mask]
+vrel_range_kms = "auto"
+v_exclude_kms = [[-1.0, 1.0]]
+x_range_arcsec = "auto"
+x_cone = "auto"
+x_max_arcsec = 2.5
+kepler = true
+kepler_dv_kms = 0.8
+disk_rout_au = 250.0
+disk_z_over_r = 0.35
+
+[trace]
+mode = "wings"
+snr_min = 5.0
+fit_frac = 0.3
+err_inflate = 2.0
+dx_arcsec = "auto"
+min_points = 8
+sigx_beam = 0.5
+drop_clipped = true
+guide_dv_kms = 1.0
+peak_choice = "brightest"
+xsmooth_arcsec = "auto"
+vsmooth_chan = "auto"
+
+[fit]
+velocity_law = "power-law"
+radial = "cone"
+rotation = "constant"
+fixed = {}
+bounds = {}
+equal_cut_weight = false
+loss = "linear"
+n_boot = 0
+check_vr_sign = true
+scale_errors_by_chi2 = true
+zref_au = 100.0
+bpl_delta = 0.1
+iterations = 1
+j_multistart = true
+max_nfev = 3000
+nphi = 361
+seed = 42
+
+[ring]
+rotation_law = "j"
+cone_half_angle_deg = "auto"
+n_passes = 2
+n_mc = 1000
+min_phi_coverage = 0.6
+cone_fit_zrange_au = [0.0, "inf"]
+prior_sigma_kms = 0.5
+
+[mass]
+tex_k = 30.0
+tex_range_k = [20.0, 50.0]
+xco = 0.0001
+mu = 1.4
+dz_au = 30.0
+nsigma = 5.0
+flux_cal = 0.1
+nmc = 1000
+y_range_arcsec = "auto"
+nu_hz = 230538000000.0
+a_ul = 6.91e-07
+g_up = 5.0
+e_up_k = 16.596
+b_rot_hz = 57635968000.0
+
+[output]
+dir = "out_01_mock"
+fig_format = "pdf"
+dpi = 200
+verbose = true
+
+[plot]
+xlim = "auto"
+vlim = "auto"
+contour_start_sigma = 5.0
+contour_step_sigma = 5.0
+cmap = "magma"
+pv_grid_offsets_arcsec = "auto"
+ncols = 4

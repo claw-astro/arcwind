@@ -8,7 +8,7 @@
 # =========================================================================
 
 [source]
-fits_file = "Elias20_CO.fits"
+fits_file = "/Users/charleslaw/Desktop/Minnesota_projects/Alyss/Data/Elias20_CO.fits"
 name = "Elias 2-20"
 distance_pc = 137.5
 mstar_msun = 0.75
