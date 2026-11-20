@@ -7,8 +7,8 @@ independent radial copy, and three methods. It is then available everywhere
 """
 import numpy as np
 
-from diskwind import WindAnalysis
-from diskwind.laws import VelocityLaw, register_law
+from arcwind import WindAnalysis
+from arcwind.laws import VelocityLaw, register_law
 
 
 @register_law

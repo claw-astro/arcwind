@@ -1,6 +1,18 @@
 Changelog
 =========
 
+0.3.0
+-----
+
+* **Renamed** ``diskwind`` → ``arcwind`` (Analysis of Resolved Conical Winds In
+  Nascent Disks): package, import name, command and documentation. The code and
+  results are unchanged. ``import diskwind`` still works for now and gives the
+  ``arcwind`` modules with a ``FutureWarning``; the ``diskwind`` command runs
+  ``arcwind`` with a note. See :doc:`installation` ("Upgrading from diskwind").
+* Default output folder ``arcwind_output`` (was ``diskwind_output``).
+* Logo (helix), in ``docs/_static/logo/``: README banner, docs sidebar logos for
+  light and dark themes, favicon, app icons and the script that draws them.
+
 0.2.7
 -----
 
@@ -22,7 +34,7 @@ Changelog
 
 New
 
-* Rotation measured cut by cut (``wa.rotation_per_cut``, ``diskwind.rotation``):
+* Rotation measured cut by cut (``wa.rotation_per_cut``, ``arcwind.rotation``):
   the geometry and velocity law of a global fit are held fixed and one j is fitted
   to each cut. Detections (|j| >= 2 sigma, well-fitted cuts only), the median j of
   all well-fitted cuts with a bootstrap range, one j fitted jointly to the detected
@@ -103,8 +115,8 @@ Elias 2-20 analysis (example 02, ``configs/elias20.toml``)
   these units (Elias 2-20 example: 6.4e-5 and 1.1e-4).
 
 * Plot style: every figure uses matplotlib's 'classic' style with 14 pt
-  sans-serif text and 2 pt axes (``diskwind.plotting.set_style``; the settings
-  are ``diskwind.plotting._style.STYLE`` and ``RC``). Font sizes of labels,
+  sans-serif text and 2 pt axes (``arcwind.plotting.set_style``; the settings
+  are ``arcwind.plotting._style.STYLE`` and ``RC``). Font sizes of labels,
   legends and titles scale with it; tick labels are thinned so they do not
   overlap. The schematic examples (08-10) use the same settings.
 * Tutorials reordered: the synthetic wind, the HH 30-like wind, your own
@@ -166,9 +178,9 @@ New
   result in the other lobe's frame; every per-lobe step and figure takes
   ``lobe=``.
 * **HH 30-like synthetic cube.** ``MockWind.hh30_like()`` (and
-  ``diskwind mock --preset hh30``): nearly edge-on, both lobes, the parameters of
+  ``arcwind mock --preset hh30``): nearly edge-on, both lobes, the parameters of
   Louvet et al. (2018). Example 07 and a tutorial.
-* **Disk center from the continuum.** ``diskwind center continuum.fits`` and
+* **Disk center from the continuum.** ``arcwind center continuum.fits`` and
   ``source.center_from_continuum``.
 * **Slit-layout figure.** Continuum from ``source.continuum_fits``, cmasher color
   maps (``plot.map_cmap``), a line label (``plot.line_label``) and map floors.
@@ -195,4 +207,4 @@ Changed
 * Configuration files (TOML/YAML/JSON) with per-cut overrides and validation.
 * Velocity-law registry (constant, power law, broken power law, user laws);
   radial modes cone / proportional / independent; constant or power-law j.
-* ``WindAnalysis`` pipeline, ``diskwind`` command line, synthetic cubes.
+* ``WindAnalysis`` pipeline, ``arcwind`` command line, synthetic cubes.

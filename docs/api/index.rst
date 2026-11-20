@@ -1,7 +1,7 @@
 API reference
 =============
 
-.. currentmodule:: diskwind
+.. currentmodule:: arcwind
 
 High level
 ----------
@@ -55,21 +55,21 @@ Modules
 .. autosummary::
    :toctree: generated
 
-   diskwind.config
-   diskwind.cube
-   diskwind.masks
-   diskwind.trace
-   diskwind.rotation
-   diskwind.laws
-   diskwind.model
-   diskwind.geometry
-   diskwind.fitting
-   diskwind.ringfit
-   diskwind.mass
-   diskwind.derived
-   diskwind.diagnostics
-   diskwind.continuum
-   diskwind.plotting
-   diskwind.mock
-   diskwind.io
-   diskwind.constants
+   arcwind.config
+   arcwind.cube
+   arcwind.masks
+   arcwind.trace
+   arcwind.rotation
+   arcwind.laws
+   arcwind.model
+   arcwind.geometry
+   arcwind.fitting
+   arcwind.ringfit
+   arcwind.mass
+   arcwind.derived
+   arcwind.diagnostics
+   arcwind.continuum
+   arcwind.plotting
+   arcwind.mock
+   arcwind.io
+   arcwind.constants

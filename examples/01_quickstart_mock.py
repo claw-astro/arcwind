@@ -6,8 +6,8 @@
 Makes a mock disk + conical wind, fits it, and compares with the truth.
 """
 
-from diskwind import WindAnalysis
-from diskwind.mock import MockWind, make_mock_cube
+from arcwind import WindAnalysis
+from arcwind.mock import MockWind, make_mock_cube
 
 # 1. a synthetic cube (full rings, i = 49 deg) and a matching configuration
 truth = MockWind(theta_deg=30.0, vp=8.0, j=-40.0)

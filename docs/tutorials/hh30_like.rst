@@ -12,7 +12,7 @@ main lobe, to show how two lobes are fitted.
 The HH 30-like preset
 ---------------------
 
-:meth:`MockWind.hh30_like() <diskwind.mock.MockWind.hh30_like>` builds the
+:meth:`MockWind.hh30_like() <arcwind.mock.MockWind.hh30_like>` builds the
 disk and wind below. Any of these values can be changed with keyword arguments,
 e.g. ``MockWind.hh30_like(j=0.0)``.
 
@@ -49,15 +49,15 @@ e.g. ``MockWind.hh30_like(j=0.0)``.
      - r ~ 145 au (continuum)
 
 An inclination of 91 deg is the same view as 89 deg with the lobe tilted the
-other way; diskwind uses 0-90 deg and the lobe orientation
+other way; arcwind uses 0-90 deg and the lobe orientation
 (``wind_approaching``). Close to edge-on, the tilt and the disk rotation sense
 cannot be estimated reliably from the cube, so the mock configuration states
 them, as one would from the jet or scattered-light images.
 
 .. code-block:: python
 
-   from diskwind import WindAnalysis
-   from diskwind.mock import MockWind, make_mock_cube
+   from arcwind import WindAnalysis
+   from arcwind.mock import MockWind, make_mock_cube
 
    truth = MockWind.hh30_like()
    make_mock_cube("hh30_mock.fits", truth)

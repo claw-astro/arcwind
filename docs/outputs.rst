@@ -29,8 +29,8 @@ Using a saved result
 
 .. code-block:: python
 
-   from diskwind import FitResult
-   r = FitResult.load("diskwind_output/broken-power-law.json")
+   from arcwind import FitResult
+   r = FitResult.load("arcwind_output/broken-power-law.json")
    r.params, r.errors(), r.theta_deg
    r.profiles(z)                     # with bands from the bootstrap
    r.curve(1.0)                      # model curve of a cut

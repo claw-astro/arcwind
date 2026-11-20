@@ -1,8 +1,8 @@
 """End-to-end tests on a small synthetic cube with known parameters."""
 import numpy as np
 
-from diskwind import FitResult, compare_fits
-from diskwind.mass import column_density_co, column_density_up
+from arcwind import FitResult, compare_fits
+from arcwind.mass import column_density_co, column_density_up
 
 
 def test_cube_estimates(analysis):
@@ -81,13 +81,13 @@ def test_co_column_densities_match_louvet2018():
 
 
 def test_ring_fit_full_rings(analysis):
-    from diskwind import RingFitter
+    from arcwind import RingFitter
     f = RingFitter(analysis.cube).fit_cut(0.75, nmc=50)
     assert f.ok and abs(f.Vr - 4.0) < 0.6
 
 
 def test_figures(analysis, tmp_path):
-    import diskwind.plotting as P
+    import arcwind.plotting as P
     r = analysis.results["t-const"]
     for fig in (P.plot_cuts(analysis.cube, r), P.plot_profiles(r), P.plot_angular_momentum(r),
                 P.plot_gallery(analysis.cube, result=r), P.plot_slit_layout(analysis.cube)):

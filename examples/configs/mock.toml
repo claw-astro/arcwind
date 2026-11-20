@@ -1,4 +1,4 @@
-# diskwind configuration (values 'auto' = unset / automatic)
+# arcwind configuration (values 'auto' = unset / automatic)
 
 [source]
 fits_file = "mock_cube.fits"

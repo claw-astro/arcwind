@@ -5,9 +5,9 @@ Useful to embed the method in your own pipeline or to try new ideas.
 """
 import numpy as np
 
-from diskwind import (ConicalWindModel, GlobalFitter, TraceExtractor, WindConfig,
+from arcwind import (ConicalWindModel, GlobalFitter, TraceExtractor, WindConfig,
                       WindCube)
-from diskwind.constants import FWHM2SIG
+from arcwind.constants import FWHM2SIG
 
 cfg = WindConfig.load("mock.toml")
 cube = WindCube(cfg)                                  # resampled cube, noise, Vsys ...

@@ -5,7 +5,7 @@ Every option can be set (a) in the configuration file, (b) on the config
 object, or (c) as an argument of WindAnalysis.fit() for one fit only.
 Run 01_quickstart_mock.py first (it writes mock.toml and the cube).
 """
-from diskwind import WindAnalysis
+from arcwind import WindAnalysis
 
 wa = WindAnalysis("mock.toml", **{"output.dir": "out_03_options", "fit.n_boot": 0})
 

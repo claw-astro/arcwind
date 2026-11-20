@@ -1,9 +1,9 @@
 import numpy as np
 import pytest
 
-from diskwind import ConicalWindModel, ViewGeometry
-from diskwind.geometry import cone_cut_heights
-from diskwind.laws import VelocityLaw, available_laws, get_law, register_law
+from arcwind import ConicalWindModel, ViewGeometry
+from arcwind.geometry import cone_cut_heights
+from arcwind.laws import VelocityLaw, available_laws, get_law, register_law
 
 G = ViewGeometry(inclination_deg=49.0, s=-1, distance_pc=137.5, vsys=1.9)
 

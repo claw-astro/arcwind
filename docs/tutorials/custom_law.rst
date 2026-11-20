@@ -7,7 +7,7 @@ Velocity laws are small classes registered by name
 .. code-block:: python
 
    import numpy as np
-   from diskwind.laws import VelocityLaw, register_law
+   from arcwind.laws import VelocityLaw, register_law
 
    @register_law
    class Saturating(VelocityLaw):

@@ -1,0 +1,82 @@
+# =========================================================================
+# arcwind configuration
+#
+#   * Only [source] is required; every other option has a default.
+#   * "auto" = let arcwind decide (unset).
+#   * `arcwind options` lists EVERY option with its default and meaning;
+#     `arcwind options trace` lists one section.
+#   * Angles in degrees, offsets in arcsec, velocities in km/s (LSRK).
+# =========================================================================
+
+[source]
+fits_file = "my_cube.fits"      # line cube (relative to this file)
+name = "My source"
+distance_pc = 140.0
+mstar_msun = 0.5
+inclination_deg = 45.0          # 0 face-on ... 90 edge-on
+disk_pa_deg = 150.0             # disk major axis, E of N
+wind_pa_deg = 240.0             # projected wind lobe = disk_pa +/- 90
+lobes = "main"                  # "main", "counter" (opposite side) or "both" (bipolar)
+wind_approaching = "auto"       # main lobe: true = tilted toward us (blue-shifted); false: away
+disk_rotation_sense = "auto"    # +1: +X side red-shifted; check with `arcwind check`
+vsys_kms = "auto"               # set it once you know it
+vsys_err_kms = 0.1
+center_ra = "auto"              # disk center (deg or "hh:mm:ss"); auto: CRVAL of the cube
+center_dec = "auto"
+center_offset_arcsec = [0.0, 0.0]   # extra (dRA cos dec, dDec) shift of the center
+
+[grid]
+x_half_width_arcsec = 3.0       # half-length of the cuts
+y_range_arcsec = [-1.5, 4.0]    # along the wind axis (negative: side without wind)
+v_range_kms = "auto"            # e.g. [-12, 18]
+
+[noise]
+n_edge_channels = 10            # line-free channels at EACH end of the cube
+vel_ranges_kms = "auto"         # or e.g. [[-12, -8]] if the line reaches a cube edge
+
+[cuts]
+y_offsets_arcsec = {start = 0.3, stop = 2.0, step = 0.15}
+slit_width_arcsec = "auto"      # half the beam FWHM along the axis
+
+# Per-cut overrides of any option (bare or section.name), e.g. for faint cuts:
+# [cuts.overrides."1.95"]
+# snr_min = 3.5
+# slit_width_arcsec = 0.15
+# xsmooth_arcsec = 0.15
+# vsmooth_chan = 2
+
+[mask]
+vrel_range_kms = "auto"         # window of V - Vsys used by the trace, e.g. [4, 12]
+v_exclude_kms = []              # e.g. [[-1, 1]] for cloud absorption
+x_cone = "auto"                 # (xc, w0, slope[, xc_slope]): window following the wind
+kepler = true                   # mask Keplerian disk emission
+disk_rout_au = 250.0
+disk_z_over_r = 0.35
+
+[trace]
+mode = "wings"                  # "wings" (full rings) or "single" (only one half seen)
+snr_min = 5.0
+peak_choice = "brightest"       # guided extraction: "brightest" or "nearest"
+guide_dv_kms = 1.0              # guided extraction window (+-dv, or [below, above])
+
+[fit]
+velocity_law = "power-law"      # "constant", "power-law", "broken-power-law", or your own
+radial = "cone"                 # "cone" (Vr = Vz tan theta), "proportional", "independent"
+rotation = "constant"           # "constant" j, or "power-law" j(z)
+fixed = {}                      # e.g. {xslope = 0.0}
+bounds = {}                     # e.g. {Vz = [0.0, 30.0]}
+equal_cut_weight = false        # true: every cut counts equally
+loss = "linear"                 # "soft_l1" is more robust to stray points
+n_boot = 100                    # bootstrap over cuts (0 = covariance errors only, fast)
+error_method = "bootstrap"      # or "jackknife": one refit per left-out cut (fewer refits)
+n_jobs = -1                     # processes for the refits (-1: all cores; 1: serial)
+iterations = 1                  # guided re-extraction + refit cycles
+
+[mass]
+tex_k = 30.0
+xco = 1e-4
+dz_au = 30.0
+
+[output]
+dir = "arcwind_output"
+fig_format = "pdf"

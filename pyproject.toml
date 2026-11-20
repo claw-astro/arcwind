@@ -3,9 +3,9 @@ requires = ["setuptools>=61", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "diskwind"
+name = "arcwind"
 dynamic = ["version"]
-description = "Geometry and kinematics of protoplanetary disk winds from transverse position-velocity diagrams"
+description = "arcwind (Analysis of Resolved Conical Winds In Nascent Disks): geometry and kinematics of protoplanetary disk winds from transverse position-velocity diagrams"
 readme = "README.md"
 requires-python = ">=3.8"
 license = {text = "MIT"}
@@ -27,19 +27,20 @@ test = ["pytest>=7"]
 all = ["astropy>=5", "pyyaml>=6", "cmasher"]
 
 [project.scripts]
-diskwind = "diskwind.cli:main"
+arcwind = "arcwind.cli:main"
+diskwind = "arcwind.cli:main_legacy"   # old name, deprecated
 
 [project.urls]
-Documentation = "https://diskwind.readthedocs.io"
+Documentation = "https://arcwind.readthedocs.io"
 
 [tool.setuptools.dynamic]
-version = {attr = "diskwind._version.__version__"}
+version = {attr = "arcwind._version.__version__"}
 
 [tool.setuptools.packages.find]
 where = ["src"]
 
 [tool.setuptools.package-data]
-diskwind = ["data/*.toml"]
+arcwind = ["data/*.toml"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

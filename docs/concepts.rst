@@ -39,7 +39,7 @@ The wind is a thin conical shell whose axis may be offset and tilted along X:
    R(z) = R_0 + z\tan\theta, \qquad x_c(z) = x_0 + \xi z .
 
 The gas has an axial velocity :math:`V_z(z)` (the :mod:`velocity law
-<diskwind.laws>`), a radial velocity :math:`V_r(z)` and a rotation
+<arcwind.laws>`), a radial velocity :math:`V_r(z)` and a rotation
 :math:`V_\phi = j(z)/R`. A point of the ring at height :math:`z` and azimuth
 :math:`\phi` is seen at
 
@@ -70,7 +70,7 @@ The fit
 -------
 
 In each PV diagram the locus of the emission (the **trace**) is measured by
-Gaussian fits to the spectrum at every position (:mod:`diskwind.trace`). The
+Gaussian fits to the spectrum at every position (:mod:`arcwind.trace`). The
 model is compared with the trace points of all cuts through their normalized
 orthogonal distance to the model curve,
 
@@ -79,7 +79,7 @@ orthogonal distance to the model curve,
    d_k^2 = \min_\phi\left[\left(\frac{x_k - X(\phi)}{\sigma_x}\right)^2 +
    \left(\frac{v_k - v(\phi)}{\sigma_k}\right)^2\right],
 
-and :math:`\sum_k\rho(w_k^2d_k^2)` is minimized (:mod:`diskwind.fitting`).
+and :math:`\sum_k\rho(w_k^2d_k^2)` is minimized (:mod:`arcwind.fitting`).
 Uncertainties come from the covariance matrix and from refits to resampled cuts:
 a bootstrap (cuts drawn with replacement) or a jackknife (one cut left out at a
 time). The refits run in parallel.
@@ -90,7 +90,7 @@ Two lobes
 ---------
 
 A bipolar wind has a **main** lobe (along ``wind_pa_deg``) and a **counter**
-lobe (along ``wind_pa_deg + 180``). diskwind analyzes the counter lobe in its own
+lobe (along ``wind_pa_deg + 180``). arcwind analyzes the counter lobe in its own
 wind frame, turned by 180 deg: ``+Y`` points along the counter lobe and ``X`` is
 reversed. In that frame the counter lobe looks like any single lobe, except that
 its axis is tilted the other way (``s -> -s``) and, seen about its own axis, the
@@ -128,4 +128,4 @@ Limitations
   neighboring points are not independent: chi2 and BIC differences are
   overestimated by about a factor of 2.
 * With partial rings, test the method on a synthetic cube with your geometry
-  (:mod:`diskwind.mock`): biases can exceed the statistical errors.
+  (:mod:`arcwind.mock`): biases can exceed the statistical errors.

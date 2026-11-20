@@ -1,7 +1,19 @@
-diskwind
+arcwind
 ========
 
-**diskwind** measures the geometry and kinematics of protoplanetary disk winds
+.. image:: _static/logo/arcwind-logo-light-transparent.svg
+   :alt: arcwind
+   :width: 260px
+   :align: center
+   :class: only-light
+
+.. image:: _static/logo/arcwind-logo-dark-transparent.svg
+   :alt: arcwind
+   :width: 260px
+   :align: center
+   :class: only-dark
+
+**arcwind** (Analysis of Resolved Conical Winds In Nascent Disks) measures the geometry and kinematics of protoplanetary disk winds
 from line cubes (e.g. ALMA CO), by fitting a rotating, expanding conical wind to
 the position--velocity (PV) diagrams of many cuts perpendicular to the wind axis.
 
@@ -20,7 +32,7 @@ outflow to
 
 .. code-block:: python
 
-   from diskwind import WindAnalysis
+   from arcwind import WindAnalysis
 
    wa = WindAnalysis("mysource.toml")
    wa.check_noise(); wa.check_disk_rotation()

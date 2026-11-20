@@ -39,7 +39,7 @@ def main():
 
     gpath = wk.result_path(cfg)
     if not os.path.exists(gpath):
-        raise SystemExit(f"[schematic] {gpath} not found: run the fit first (diskwind fit)")
+        raise SystemExit(f"[schematic] {gpath} not found: run the fit first (arcwind fit)")
     G = wk.geometry_meta(cfg)      # geometry metadata (s, i, d, cuts)
     VM = wk.VelocityModel(cfg, args.model or cfg.VELOCITY_MODEL)
     gp = dict(zip(VM.names, VM.p))
@@ -212,7 +212,7 @@ def main():
     fig.suptitle(f"{cfg.SOURCE_NAME}: ring model from the global fit "
                  f"({VM.name}){rot}", fontsize="medium", y=1.0)
     fig.tight_layout()
-    from diskwind.plotting._style import thin_ticks
+    from arcwind.plotting._style import thin_ticks
     thin_ticks(fig, 4)
     out = wk.figpath(cfg, "ring_schematic")
     fig.savefig(out, dpi=cfg.FIG_DPI)

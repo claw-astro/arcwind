@@ -1,7 +1,7 @@
 The analysis step by step
 =========================
 
-Every step is a method of :class:`~diskwind.WindAnalysis`; each also exists as a
+Every step is a method of :class:`~arcwind.WindAnalysis`; each also exists as a
 class you can use on its own (:doc:`api/index`).
 
 .. list-table::
@@ -12,34 +12,34 @@ class you can use on its own (:doc:`api/index`).
      - Method
      - Output (in ``output.dir``)
    * - Load and resample the cube
-     - ``wa.cube`` (:class:`~diskwind.WindCube`)
+     - ``wa.cube`` (:class:`~arcwind.WindCube`)
      - --
    * - Noise channels line-free?
-     - :meth:`~diskwind.WindAnalysis.check_noise`
+     - :meth:`~arcwind.WindAnalysis.check_noise`
      - ``noise_check.txt/.pdf``
    * - Disk rotation sense
-     - :meth:`~diskwind.WindAnalysis.check_disk_rotation`
+     - :meth:`~arcwind.WindAnalysis.check_disk_rotation`
      - ``disk_rotation_check.pdf``
    * - Look at the PV diagrams and masks
      - ``plot_pv_grid(show_mask=True)``, ``plot_slit_layout()``
      - ``pv_grid.pdf``, ``slit_layout.pdf``
    * - Traces
-     - :meth:`~diskwind.WindAnalysis.extract_traces`
+     - :meth:`~arcwind.WindAnalysis.extract_traces`
      - (stored in the results)
    * - Global fit
-     - :meth:`~diskwind.WindAnalysis.fit`
+     - :meth:`~arcwind.WindAnalysis.fit`
      - ``<label>.json``, ``<label>.txt``
    * - Model comparison
-     - :meth:`~diskwind.WindAnalysis.compare`
+     - :meth:`~arcwind.WindAnalysis.compare`
      - printed table
    * - Per-cut ring fits (full rings)
-     - :meth:`~diskwind.WindAnalysis.ring_fits`
+     - :meth:`~arcwind.WindAnalysis.ring_fits`
      - ``ring_fits.csv``
    * - Mass, mass-loss rate
-     - :meth:`~diskwind.WindAnalysis.mass`
+     - :meth:`~arcwind.WindAnalysis.mass`
      - ``mass_slices.txt/.pdf``
    * - Derived quantities
-     - :meth:`~diskwind.WindAnalysis.derived`
+     - :meth:`~arcwind.WindAnalysis.derived`
      - (``WindProperties``)
    * - Figures
      - ``plot_cuts``, ``plot_cut``, ``plot_profiles``, ``plot_angular_momentum``, ``plot_rotation``, ``plot_gallery``, ``plot_bootstrap``
@@ -50,7 +50,7 @@ class you can use on its own (:doc:`api/index`).
 
 .. code-block:: python
 
-   from diskwind import WindAnalysis
+   from arcwind import WindAnalysis
    wa = WindAnalysis("mysource.toml")
    print(wa.cube)
 
@@ -117,7 +117,7 @@ everything that can be changed.
 6. Everything at once
 ---------------------
 
-``wa.run()`` or ``diskwind run mysource.toml`` performs the checks, a first
+``wa.run()`` or ``arcwind run mysource.toml`` performs the checks, a first
 power-law fit, the configured law guided by it, the comparison, the mass and the
 figures.
 

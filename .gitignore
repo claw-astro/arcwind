@@ -8,15 +8,8 @@ docs/config_reference.rst
 docs/api/generated/
 # data and outputs (keep large cubes out of git)
 *.fits
+examples/output/
+arcwind_output*/
 diskwind_output*/
 out_*/
 mock_output/
-*.fits
-*.zip
-.DS_Store
-old/
-best_current/
-diskwind-*/
-diskwind_output_*/
-.github/
-examples/output/

@@ -20,7 +20,7 @@ law guided by it. YMAX restricts the cuts (example 11 compares several YMAX).
 """
 import matplotlib.pyplot as plt
 
-from diskwind import WindAnalysis
+from arcwind import WindAnalysis
 
 YMAX = None
 CONSTANT_J = True     # also fit a constant j to the same traces and compare           # e.g. 2.0: only cuts with y0 <= 2.0" (None: all cuts)

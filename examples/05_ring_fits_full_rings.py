@@ -8,8 +8,8 @@ Data: the synthetic cube of example 01 (mock_cube.fits + mock.toml; run
 01_quickstart_mock.py first): i = 49 deg, full rings, theta = 30 deg,
 Vp = 8 km/s, j = -40 au km/s.
 """
-from diskwind import WindAnalysis
-from diskwind.plotting import plot_ring_fits
+from arcwind import WindAnalysis
+from arcwind.plotting import plot_ring_fits
 
 wa = WindAnalysis("mock.toml", **{"output.dir": "out_05_rings"})
 rings = wa.ring_fits()                     # two passes: free theta, then theta fixed

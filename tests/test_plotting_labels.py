@@ -2,7 +2,7 @@
 import matplotlib
 matplotlib.use("Agg")
 
-from diskwind.plotting._style import law_label
+from arcwind.plotting._style import law_label
 
 
 def test_law_label():

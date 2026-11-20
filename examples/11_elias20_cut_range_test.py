@@ -23,8 +23,8 @@ Every file carries its label:
 import matplotlib.pyplot as plt
 import numpy as np
 
-from diskwind import WindAnalysis
-from diskwind.plotting import plot_angular_momentum, plot_profiles
+from arcwind import WindAnalysis
+from arcwind.plotting import plot_angular_momentum, plot_profiles
 
 YMAXES = (2.0, 2.4)                          # highest cut of each fit (arcsec)
 CONFIG = "configs/elias20.toml"

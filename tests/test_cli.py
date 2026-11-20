@@ -1,5 +1,5 @@
-from diskwind.cli import main
-from diskwind import WindConfig
+from arcwind.cli import main
+from arcwind import WindConfig
 
 
 def test_init_and_options(tmp_path, capsys):

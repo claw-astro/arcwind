@@ -1,7 +1,7 @@
 import pytest
 
-from diskwind import WindConfig
-from diskwind.config import ConfigError
+from arcwind import WindConfig
+from arcwind.config import ConfigError
 
 
 def test_defaults_and_set_get():

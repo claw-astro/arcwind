@@ -6,7 +6,7 @@ Quick start
 
 .. code-block:: bash
 
-   diskwind init mysource.toml
+   arcwind init mysource.toml
 
 and fill in the ``[source]`` block -- the cube, distance, stellar mass,
 inclination, and the position angles of the disk and of the wind lobe:
@@ -36,7 +36,7 @@ and ``examples/output/<source>/``).
 
 .. code-block:: python
 
-   from diskwind import WindAnalysis
+   from arcwind import WindAnalysis
 
    wa = WindAnalysis("mysource.toml")
    print(wa.cube)                           # Vsys, lobe orientation, disk sense
@@ -70,14 +70,14 @@ Or all of it from the command line:
 
 .. code-block:: bash
 
-   diskwind check mysource.toml
-   diskwind run mysource.toml
+   arcwind check mysource.toml
+   arcwind run mysource.toml
 
 Try it without data
 -------------------
 
 .. code-block:: bash
 
-   diskwind mock                     # Elias 2-20-like: inclined, one lobe
-   diskwind mock --preset hh30       # HH 30-like: nearly edge-on, both lobes
-   diskwind run mock.toml --nboot 0
+   arcwind mock                     # Elias 2-20-like: inclined, one lobe
+   arcwind mock --preset hh30       # HH 30-like: nearly edge-on, both lobes
+   arcwind run mock.toml --nboot 0

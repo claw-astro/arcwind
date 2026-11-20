@@ -1,20 +1,20 @@
 Configuration
 =============
 
-A configuration is a :class:`~diskwind.WindConfig`: sections of options with
+A configuration is a :class:`~arcwind.WindConfig`: sections of options with
 defaults. Files can be TOML (recommended), YAML, JSON or Python.
 
 .. code-block:: bash
 
-   diskwind init mysource.toml      # annotated template
-   diskwind options                 # every option, default and meaning
-   diskwind options mask            # one section
+   arcwind init mysource.toml      # annotated template
+   arcwind options                 # every option, default and meaning
+   arcwind options mask            # one section
 
 In Python:
 
 .. code-block:: python
 
-   from diskwind import WindConfig
+   from arcwind import WindConfig
    cfg = WindConfig.load("mysource.toml")
    cfg.trace.snr_min = 4                    # attribute access
    cfg.set(snr_min=4, **{"fit.n_boot": 0})  # bare or dotted names
@@ -24,7 +24,7 @@ In Python:
 Rules
 -----
 
-* ``"auto"`` means unset: diskwind decides (TOML has no null).
+* ``"auto"`` means unset: arcwind decides (TOML has no null).
 * Option names are checked: a typo raises an error with a suggestion.
 * Relative paths (``fits_file``, ``output.dir``) are relative to the file.
 * ``cuts.y_offsets_arcsec`` is a list or ``{start, stop, step}``.
@@ -43,7 +43,7 @@ Three ways to set it in ``[source]``:
 * ``center_from_continuum = true`` with ``continuum_fits``: an elliptical Gaussian
   is fitted to the continuum (keep ``center_offset_arcsec = [0, 0]``).
 
-``diskwind center continuum.fits`` runs the same fit and prints the lines to paste.
+``arcwind center continuum.fits`` runs the same fit and prints the lines to paste.
 
 Per-cut overrides
 -----------------

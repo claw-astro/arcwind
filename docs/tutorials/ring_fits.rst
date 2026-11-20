@@ -14,7 +14,7 @@ The ring fits on the HH 30-like cube are shown in :doc:`hh30_like`.
 
 .. code-block:: python
 
-   from diskwind import WindAnalysis
+   from arcwind import WindAnalysis
    wa = WindAnalysis("mock.toml")
 
 .. code-block:: python
@@ -23,7 +23,7 @@ The ring fits on the HH 30-like cube are shown in :doc:`hh30_like`.
    rings.cone                          # R0, theta from a fit to R(z)
    t = rings.table()                   # columns: z_au, R_au, Vz, Vr, Vphi, j (+ _err)
 
-   from diskwind.plotting import plot_ring_fits
+   from arcwind.plotting import plot_ring_fits
    plot_ring_fits(rings)
 
 .. figure:: ../_static/mock_ring_fits.png

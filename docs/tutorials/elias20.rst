@@ -48,7 +48,7 @@ Steps
 
 .. code-block:: python
 
-   from diskwind import WindAnalysis
+   from arcwind import WindAnalysis
    wa = WindAnalysis("configs/elias20.toml")
    print(wa.check_noise().summary())
    print(wa.check_disk_rotation().summary())        # +1: the SE side is red-shifted

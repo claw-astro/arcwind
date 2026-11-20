@@ -20,6 +20,6 @@ FITS files are ignored by git (`.gitignore`), so the cubes stay on your disk onl
 2. Copy a configuration, e.g. `cp configs/elias20.toml configs/<source>.toml`, and set
    `fits_file = "../data/<source>/<cube>.fits"` (and `continuum_fits`, `plot.mom0_fits`),
    `output.dir = "../output/<source>"` and the source parameters.
-3. `diskwind check configs/<source>.toml`, then run as in `02_elias20_analysis.py`.
+3. `arcwind check configs/<source>.toml`, then run as in `02_elias20_analysis.py`.
 
 Absolute paths also work, e.g. to keep large cubes elsewhere.

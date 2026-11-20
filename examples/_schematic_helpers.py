@@ -2,9 +2,9 @@
 Helpers for the schematic examples (08-10): read the configuration and the
 saved fit in the form these drawing scripts use.
 
-* ``load_config(path)`` reads a diskwind configuration and exposes the old
+* ``load_config(path)`` reads a arcwind configuration and exposes the old
   upper-case names (``cfg.INCLINATION_DEG`` ...).
-* ``VelocityModel(cfg, model)`` wraps the saved :class:`diskwind.FitResult`
+* ``VelocityModel(cfg, model)`` wraps the saved :class:`arcwind.FitResult`
   ``<output>/<label>.json`` (label: the velocity law, e.g. broken-power-law, or
   broken-power-law-jz for a j(z) fit).
 """
@@ -13,8 +13,8 @@ from types import SimpleNamespace
 
 import numpy as np
 
-from diskwind import FitResult, WindConfig
-from diskwind.config import LEGACY_KEYS
+from arcwind import FitResult, WindConfig
+from arcwind.config import LEGACY_KEYS
 
 GLOBAL_ZREF_AU = 100.0
 VELOCITY_MODELS = ("single", "bpl-cone")
@@ -42,7 +42,7 @@ def figpath(cfg, name):
 def setup_matplotlib():
     import matplotlib
     matplotlib.use("Agg")
-    from diskwind.plotting._style import plt
+    from arcwind.plotting._style import plt
     return plt()
 
 

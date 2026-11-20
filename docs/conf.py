@@ -1,17 +1,16 @@
-"""Sphinx configuration for diskwind (Read the Docs)."""
+"""Sphinx configuration for arcwind (Read the Docs)."""
 import os
 import sys
 
 sys.path.insert(0, os.path.abspath("../src"))
 
-import diskwind  # noqa: E402
-from diskwind.config import WindConfig  # noqa: E402
+from arcwind.config import WindConfig  # noqa: E402
 
-project = "diskwind"
+project = "arcwind"
 author = "Charles J. Law"
 copyright = "2026, Charles J. Law"
-release = diskwind.__version__
-version = release
+release = ""   # no version number anywhere in the rendered docs
+version = ""
 
 extensions = [
     "sphinx.ext.autodoc",
@@ -37,8 +36,14 @@ intersphinx_mapping = {
 templates_path = ["_templates"]
 exclude_patterns = ["_build"]
 html_theme = "furo"
-html_title = f"diskwind {release}"
+html_title = "arcwind"
 html_static_path = ["_static"]
+html_favicon = "_static/logo/favicon.ico"
+html_theme_options = {
+    "light_logo": "logo/arcwind-banner-light-transparent.svg",
+    "dark_logo": "logo/arcwind-banner-dark-transparent.svg",
+    "sidebar_hide_name": True,
+}
 default_role = "py:obj"
 
 # --- the configuration reference is generated from the code, so it is never stale

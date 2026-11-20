@@ -38,9 +38,9 @@ The noise check says CHECK
    NaN) are excluded automatically; they would make the noise look too low.
 
 How do I change the look of the figures?
-   Every figure calls ``diskwind.plotting.set_style()`` (matplotlib's 'classic'
+   Every figure calls ``arcwind.plotting.set_style()`` (matplotlib's 'classic'
    style, 14 pt text, 2 pt axes). Edit ``STYLE`` and ``RC`` in
-   ``diskwind/plotting/_style.py``, or restyle the returned figures yourself.
+   ``arcwind/plotting/_style.py``, or restyle the returned figures yourself.
 
 The slit-layout map is not in the cmasher colors
    Install cmasher (``pip install cmasher``); without it ``plot.map_cmap =

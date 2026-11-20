@@ -10,8 +10,8 @@ the package; with ``output.fig_format = "png"`` they are written to ``output.dir
 
 .. code-block:: python
 
-   from diskwind import WindAnalysis
-   from diskwind.mock import MockWind, make_mock_cube
+   from arcwind import WindAnalysis
+   from arcwind.mock import MockWind, make_mock_cube
 
    truth = MockWind(theta_deg=30.0, vp=8.0, j=-40.0)   # i = 49 deg, full rings
    make_mock_cube("mock_cube.fits", truth)

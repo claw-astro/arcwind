@@ -2,7 +2,7 @@
 import numpy as np
 import pytest
 
-from diskwind import ConicalWindModel, ViewGeometry
+from arcwind import ConicalWindModel, ViewGeometry
 
 
 def test_mirror_is_an_involution():
@@ -32,8 +32,8 @@ def test_counter_lobe_sees_the_same_physical_wind():
 
 @pytest.fixture(scope="module")
 def hh30(tmp_path_factory):
-    from diskwind import WindAnalysis
-    from diskwind.mock import MockWind, make_mock_cube
+    from arcwind import WindAnalysis
+    from arcwind.mock import MockWind, make_mock_cube
     d = tmp_path_factory.mktemp("hh30")
     m = MockWind.hh30_like()
     fits = make_mock_cube(str(d / "hh30.fits"), m, n_wind=500_000, n_disk=300_000)
@@ -67,7 +67,7 @@ def test_single_counter_lobe_fit_matches(hh30):
 
 
 def test_two_lobe_result_roundtrip(hh30, tmp_path):
-    from diskwind import FitResult
+    from arcwind import FitResult
     m, wa = hh30
     r = wa.results["constant-both"]
     r2 = FitResult.load(r.save(str(tmp_path / "both.json")))

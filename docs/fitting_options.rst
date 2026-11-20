@@ -202,7 +202,7 @@ Test your settings on a synthetic cube with your geometry:
 
 .. code-block:: python
 
-   from diskwind.mock import MockWind, make_mock_cube
+   from arcwind.mock import MockWind, make_mock_cube
    m = MockWind(inclination_deg=49, approaching=False, theta_deg=20, vp=10, j=-40)
    make_mock_cube("mock.fits", m)
    cfg = wa.config.copy(); cfg.source.fits_file = "mock.fits"

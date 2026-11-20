@@ -15,8 +15,8 @@ Then the script
 """
 import numpy as np
 
-from diskwind import WindAnalysis
-from diskwind.mock import MockWind, make_mock_cube
+from arcwind import WindAnalysis
+from arcwind.mock import MockWind, make_mock_cube
 
 # --- 1. the synthetic cube --------------------------------------------------
 truth = MockWind.hh30_like()             # i = 89 deg (91 deg), theta = 35 deg,

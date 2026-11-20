@@ -12,7 +12,7 @@ def _const(analysis):
 
 def test_rotation_per_cut_recovers_constant_j(analysis):
     r = _const(analysis)
-    from diskwind import rotation_per_cut
+    from arcwind import rotation_per_cut
     rot = rotation_per_cut(r)
     assert len(rot.y0) >= 3
     good = rot.detected
@@ -23,13 +23,13 @@ def test_rotation_per_cut_recovers_constant_j(analysis):
     assert "detected" in rot.joint
     txt = rot.summary()
     assert "rotation per cut" in txt
-    import diskwind.plotting as P
+    import arcwind.plotting as P
     P.plot_rotation(rot, r)
 
 
 def test_fixed_parameter_outside_default_bounds(analysis):
     """A fixed value is kept even if the default bounds of these cuts exclude it."""
-    from diskwind import ConicalWindModel, GlobalFitter
+    from arcwind import ConicalWindModel, GlobalFitter
     r = _const(analysis)
     y0 = sorted(r.traces)[0]
     m = ConicalWindModel(r.model.law, radial=r.model.radial, rotation="constant")
@@ -45,7 +45,7 @@ def test_fixed_parameter_outside_default_bounds(analysis):
 
 
 def test_contiguous_flag():
-    from diskwind.rotation import RotationProfile
+    from arcwind.rotation import RotationProfile
     n = 5
     a = np.arange(n, dtype=float)
     j = np.array([0, 50, 0, 50, 0.0])
@@ -57,7 +57,7 @@ def test_contiguous_flag():
 
 
 def test_median():
-    from diskwind.rotation import RotationProfile
+    from arcwind.rotation import RotationProfile
     n = 5
     a = np.arange(n, dtype=float)
     p = RotationProfile("x", a, a * 50 + 50, a * 10 + 30, np.array([1, 2, 3, 4, 100.0]),
