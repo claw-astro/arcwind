@@ -640,7 +640,7 @@ class WindConfig:
             doc = (cls.__doc__ or "").strip().splitlines()[0]
             if fmt == "rst":
                 lines += [f".. _config-{sec}:", "", f"``[{sec}]``", "~" * (len(sec) + 6), "",
-                          (cls.__doc__ or "").strip(), "",
+                          (cls.__doc__ or "").strip().replace("|", "\\|"), "",
                           ".. list-table::", "   :header-rows: 1", "   :widths: 22 14 8 56", "",
                           "   * - Option", "     - Default", "     - Unit", "     - Meaning"]
             else:
@@ -654,6 +654,7 @@ class WindConfig:
                     txt += " Choices: " + ", ".join("auto" if c is None else repr(c)
                                                     for c in md["choices"]) + "."
                 if fmt == "rst":
+                    txt = txt.replace("|", "\\|")   # a bare |X| is a substitution in rst
                     lines += [f"   * - ``{f.name}``", f"     - ``{dv}``",
                               f"     - {md.get('unit') or '-'}", f"     - {txt}"]
                 else:

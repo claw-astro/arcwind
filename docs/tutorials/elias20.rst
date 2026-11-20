@@ -114,7 +114,7 @@ Rotation measured cut by cut
 
 A law for j(z) is a description, not a measurement. ``wa.rotation_per_cut`` holds
 the geometry and velocity law of a fit fixed and fits one j to each cut on its own.
-A cut counts as a detection when |j| is at least ``nsigma`` (2) times its error;
+A cut counts as a detection when ``|j|`` is at least ``nsigma`` (2) times its error;
 cuts that the model fits poorly even with their own j (mean d^2 > 2) are flagged
 and left out. The summary gives the median j of all well-fitted cuts (with a 16-84%
 bootstrap range over cuts), one j fitted jointly to the detected cuts and one to

@@ -33,7 +33,7 @@ New
 
 * Rotation measured cut by cut (``wa.rotation_per_cut``, ``arcwind.rotation``):
   the geometry and velocity law of a global fit are held fixed and one j is fitted
-  to each cut. Detections (|j| >= 2 sigma, well-fitted cuts only), the median j of
+  to each cut. Detections (``|j| >= 2`` sigma, well-fitted cuts only), the median j of
   all well-fitted cuts with a bootstrap range, one j fitted jointly to the detected
   cuts and an upper limit from the others; detections that are not adjacent are
   flagged (``<label>_rotation_per_cut.txt``). Figure: ``wa.plot_rotation``, with

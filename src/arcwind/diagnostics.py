@@ -151,7 +151,7 @@ class DiskRotationCheck:
     ----------
     scores : dict
         Summed emission (S/N units) along the projected Keplerian curves of each
-        sense (+1, -1), at |v - Vsys| > 1.5 km/s.
+        sense (+1, -1), at ``|v - Vsys| > 1.5`` km/s.
     best_sense : int
         The sense the data favor.
     config_sense : int or None

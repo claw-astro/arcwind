@@ -28,6 +28,7 @@ autodoc_typehints = "none"
 napoleon_numpy_docstring = True
 napoleon_google_docstring = False
 napoleon_use_rtype = False
+napoleon_use_ivar = True   # "Attributes" as a field list: no duplicate attribute entries
 intersphinx_mapping = {
     "python": ("https://docs.python.org/3", None),
     "numpy": ("https://numpy.org/doc/stable", None),
@@ -35,7 +36,7 @@ intersphinx_mapping = {
     "matplotlib": ("https://matplotlib.org/stable", None),
 }
 templates_path = ["_templates"]
-exclude_patterns = ["_build"]
+exclude_patterns = ["_build", "config_reference.rst"]   # included by configuration.rst
 html_theme = "furo"
 html_title = "arcwind"
 html_static_path = ["_static"]

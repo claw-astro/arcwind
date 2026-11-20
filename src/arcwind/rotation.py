@@ -77,7 +77,7 @@ class RotationProfile:
 
     @property
     def detected(self):
-        """Well-fitted cuts where |j| >= nsigma x its error."""
+        """Well-fitted cuts where ``|j| >= nsigma`` x its error."""
         return (np.abs(self.j) >= self.nsigma * self.j_err) & ~self.poor
 
     def median(self, quantity="j", n_boot=2000):
@@ -219,7 +219,7 @@ def rotation_per_cut(result, traces=None, nsigma=2.0, max_d2=2.0, min_points=4):
     traces : dict, optional
         ``{y0: Trace}``; default: the traces of ``result``.
     nsigma : float
-        Detection threshold (|j| / error).
+        Detection threshold (``|j|`` / error).
     max_d2 : float
         Cuts with a larger mean squared distance (with their own j) are flagged as
         poorly fitted and left out of the detections and joint fits.
