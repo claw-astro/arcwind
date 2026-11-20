@@ -4,12 +4,9 @@ Changelog
 0.3.0
 -----
 
-* **Renamed** ``diskwind`` → ``arcwind`` (Analysis of Resolved Conical Winds In
+* The package is now called **arcwind** (Analysis of Resolved Conical Winds In
   Nascent Disks): package, import name, command and documentation. The code and
-  results are unchanged. ``import diskwind`` still works for now and gives the
-  ``arcwind`` modules with a ``FutureWarning``; the ``diskwind`` command runs
-  ``arcwind`` with a note. See :doc:`installation` ("Upgrading from diskwind").
-* Default output folder ``arcwind_output`` (was ``diskwind_output``).
+  results are unchanged. Default output folder: ``arcwind_output``.
 * Logo (helix), in ``docs/_static/logo/``: README banner, docs sidebar logos for
   light and dark themes, favicon, app icons and the script that draws them.
 

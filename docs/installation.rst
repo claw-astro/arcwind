@@ -34,14 +34,3 @@ Check the installation:
 
    arcwind --help
    arcwind options fit        # every option of the [fit] section
-
-
-Upgrading from ``diskwind``
----------------------------
-
-The package used to be called ``diskwind``. Nothing else changed: replace
-``diskwind`` by ``arcwind`` in your imports and commands. Until the old name is removed, ``import diskwind`` (and
-``diskwind.<module>``) still works and gives the ``arcwind`` modules, with a
-``FutureWarning``, and the ``diskwind`` command runs ``arcwind``. Saved results
-(``*.json``) and configuration files are unchanged and load as before. Only the
-default output folder changed, from ``diskwind_output`` to ``arcwind_output``.

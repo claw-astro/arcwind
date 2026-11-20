@@ -139,13 +139,6 @@ def main(argv=None):
     a.func(a)
 
 
-def main_legacy(argv=None):
-    """The old ``diskwind`` command: warns, then runs ``arcwind``."""
-    import sys
-    print("note: the 'diskwind' command is now 'arcwind'; the old name will be removed "
-          "in a later release.", file=sys.stderr)
-    return main(argv)
-
 
 if __name__ == "__main__":
     sys.exit(main())
