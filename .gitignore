@@ -13,3 +13,4 @@ arcwind_output*/
 diskwind_output*/
 out_*/
 mock_output/
+.DS_Store
