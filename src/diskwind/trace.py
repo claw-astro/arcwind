@@ -66,11 +66,6 @@ class Trace:
     def __len__(self):
         return self.n
 
-    def subset(self, keep):
-        """A new Trace with the points selected by the boolean or index array ``keep``."""
-        return Trace(self.y0, self.x[keep], self.v[keep], self.err[keep], self.side[keep],
-                     self.snr[keep], self.fwhm[keep])
-
     def thinned(self, dx, x0=0.0, step=None):
         """Keep about one point every ``dx`` arcsec along the cut (points on a
         regular grid of spacing ``step`` starting at ``x0``)."""
@@ -87,7 +82,7 @@ class Trace:
         return getattr(self, key)
 
     def subset(self, mask):
-        """A new Trace with the points selected by ``mask``."""
+        """A new Trace with the points selected by ``mask`` (boolean or index array)."""
         return Trace(self.y0, *(getattr(self, k)[mask] for k in
                                 ("x", "v", "err", "side", "snr", "fwhm")))
 

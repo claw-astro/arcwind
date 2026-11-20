@@ -1,8 +1,14 @@
 # Examples
 
 Run the examples from this folder. 01 and 07 need no data; 03-06 reuse the
-synthetic cube written by 01; 02 and 08-10 need the Elias 2-20 cube
-(`configs/Elias20_CO.fits`, see `configs/elias20.toml`).
+synthetic cube written by 01; 02, 08-11 need the Elias 2-20 data.
+
+**Where the data go.** Each source has an input folder `data/<source>/` and an output
+folder `output/<source>/`; the configuration in `configs/` points to both (paths are
+relative to the configuration file). For Elias 2-20: put `Elias20_CO.fits`,
+`Elias20_continuum.fits` and (optionally) `Elias20_CO_M0.fits` in `data/elias20/`;
+results go to `output/elias20/`. FITS files and `output/` are ignored by git. See
+[`data/README.md`](data/README.md), which also explains how to set up another source.
 
 | script | what it shows |
 |---|---|

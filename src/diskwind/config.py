@@ -733,6 +733,9 @@ class WindConfig:
             alt = os.path.join(os.path.dirname(self.path), f)
             if os.path.exists(alt):
                 return alt
+            raise ConfigError(f"cube not found: {f!r} (looked in the current folder and in "
+                              f"{os.path.dirname(os.path.abspath(self.path))}); put it there "
+                              "(e.g. examples/data/<source>/) or set source.fits_file")
         return f
 
     def resolve(self, f):

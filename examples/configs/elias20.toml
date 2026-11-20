@@ -8,7 +8,8 @@
 # =========================================================================
 
 [source]
-fits_file = "Elias20_CO.fits"
+# Data: examples/data/elias20/ (paths are relative to this file; see data/README.md)
+fits_file = "../data/elias20/Elias20_CO.fits"
 name = "Elias 2-20"
 distance_pc = 137.5
 mstar_msun = 0.75
@@ -24,11 +25,11 @@ vsys_aperture_arcsec = 1.5
 # dRA = -54.4 +/- 1.5 mas, dDec = -491.0 +/- 1.3 mas from the phase center, which
 # is the reference pixel of the DSHARP images). To fit it yourself instead, set
 # center_from_continuum = true and center_offset_arcsec = [0.0, 0.0], or run
-# `diskwind center Elias20_continuum.fits` and paste its output here.
+# `diskwind center ../data/elias20/Elias20_continuum.fits` and paste its output here.
 center_ra = "auto"
 center_dec = "auto"
 center_offset_arcsec = [-0.0544, -0.491]
-continuum_fits = "Elias20_continuum.fits"
+continuum_fits = "../data/elias20/Elias20_continuum.fits"
 center_from_continuum = false
 restfreq_hz = 230538000000.0
 
@@ -162,7 +163,7 @@ e_up_k = 16.596
 b_rot_hz = 57635968000.0
 
 [output]
-dir = "diskwind_output_elias20"
+dir = "../output/elias20"       # results: examples/output/elias20/
 fig_format = "pdf"
 dpi = 200
 verbose = true
@@ -173,7 +174,7 @@ vlim = [-8, 15]
 contour_start_sigma = 5.0
 contour_step_sigma = 5.0
 cmap = "magma"
-mom0_fits = "Elias20_CO_M0.fits"     # slit-layout map (auto: integrated from the cube)
+mom0_fits = "../data/elias20/Elias20_CO_M0.fits"   # slit-layout map (auto: integrated from the cube)
 map_cmap = "cmr.freeze"              # needs `pip install cmasher`
 line_label = "$^{12}$CO $J$=2$-$1"
 map_min = 0.064             # mJy/beam km/s

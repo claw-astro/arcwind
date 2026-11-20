@@ -1,7 +1,7 @@
 """
 11 -- Robustness of the Elias 2-20 fit to the highest, faintest cuts.
 
-    python 11_elias20_cut_range_test.py      # needs Elias20_CO.fits next to configs/
+    python 11_elias20_cut_range_test.py      # needs the cube in data/elias20/ (data/README.md)
 
 Fits the same configuration (inner-arch window, cuts from y0 = 0.45") with the cuts
 restricted to y0 <= YMAX, for each YMAX in YMAXES (default: 2.0" and 2.4", the
@@ -66,7 +66,7 @@ for ymax in YMAXES:
 # --- comparison ------------------------------------------------------------
 def derived(r):
     """A few derived quantities of one fit."""
-    g, p, e = r.geometry, r.params, r.errors("max")
+    g = r.geometry
     th, eth = r.theta_deg
     z = np.array([g.zc_au(min(r.traces)), g.zc_au(max(r.traces))])
     P = r.profiles(z)

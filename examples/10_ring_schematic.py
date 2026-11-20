@@ -15,7 +15,6 @@ The rings are evaluated from the saved fit <output.dir>/broken-power-law.json
 --nring evenly spaced heights. Writes <output.dir>/ring_schematic.<fig_format>.
 """
 import argparse
-import json
 import os
 
 import numpy as np

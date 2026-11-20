@@ -1,6 +1,22 @@
 Changelog
 =========
 
+0.2.7
+-----
+
+* A standard place for the data of each source: inputs in
+  ``examples/data/<source>/`` and results in ``examples/output/<source>/``
+  (``examples/data/README.md``). ``configs/elias20.toml`` now reads the Elias 2-20
+  files from ``data/elias20/`` and writes to ``output/elias20/``; ``examples/output/``
+  is ignored by git. A missing cube now gives an error that says where it was
+  looked for.
+* Example 02 names its adopted fit ``broken-power-law`` whatever the rotation law,
+  and examples 08-10 also find a fit saved as ``broken-power-law-jz``.
+* Code check: duplicate ``Trace.subset`` removed (one method takes boolean or index
+  arrays); unused imports and variables removed from the examples.
+* Elias 2-20 tutorial: the data and output folders; the paragraph of per-cut
+  rotation values removed.
+
 0.2.6
 -----
 

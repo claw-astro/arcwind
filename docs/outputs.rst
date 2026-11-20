@@ -1,7 +1,11 @@
 Outputs
 =======
 
-Everything is written to ``output.dir`` (created if needed).
+Everything is written to ``output.dir`` (created if needed; a relative path is
+relative to the configuration file). The examples keep inputs and results per source:
+``examples/data/<source>/`` for the cubes and ``examples/output/<source>/`` for the
+results (e.g. ``data/elias20/`` and ``output/elias20/``); see
+``examples/data/README.md``.
 
 ``<label>.json``
    The full fit result: model, parameters, errors, bootstrap samples, traces,

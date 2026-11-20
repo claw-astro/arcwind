@@ -5,7 +5,8 @@ saved fit in the form these drawing scripts use.
 * ``load_config(path)`` reads a diskwind configuration and exposes the old
   upper-case names (``cfg.INCLINATION_DEG`` ...).
 * ``VelocityModel(cfg, model)`` wraps the saved :class:`diskwind.FitResult`
-  ``<output>/<label>.json`` (label: the velocity law, e.g. broken-power-law).
+  ``<output>/<label>.json`` (label: the velocity law, e.g. broken-power-law, or
+  broken-power-law-jz for a j(z) fit).
 """
 import os
 from types import SimpleNamespace
@@ -49,10 +50,7 @@ class VelocityModel:
     """The subset of the old VelocityModel API used by the schematic scripts."""
 
     def __init__(self, cfg, model="bpl-cone", n_draw=300):
-        label = _LABEL.get(model, model)
-        path = os.path.join(cfg.OUTPUT_DIR, f"{label}.json")
-        if not os.path.exists(path):
-            raise FileNotFoundError(f"{path} not found: run the fit first")
+        path = result_path(cfg, model)
         self.res = FitResult.load(path)
         self.model = model
         self.name = self.res.label
@@ -74,7 +72,12 @@ class VelocityModel:
 def result_path(cfg, model=None):
     """Path of the saved fit used by the schematics."""
     label = _LABEL.get(model or cfg.VELOCITY_MODEL, model or cfg.VELOCITY_MODEL)
-    return os.path.join(cfg.OUTPUT_DIR, f"{label}.json")
+    for name in (label, f"{label}-jz"):        # -jz: default label of a j(z) fit
+        path = os.path.join(cfg.OUTPUT_DIR, f"{name}.json")
+        if os.path.exists(path):
+            return path
+    raise FileNotFoundError(f"{os.path.join(cfg.OUTPUT_DIR, label + '.json')} not found: "
+                            "run 02_elias20_analysis.py first")
 
 
 def geometry_meta(cfg, model=None):

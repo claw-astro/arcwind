@@ -1,7 +1,7 @@
 """
 02 -- The Elias 2-20 analysis, step by step (the adopted result).
 
-    python 02_elias20_analysis.py            # needs Elias20_CO.fits next to configs/
+    python 02_elias20_analysis.py            # needs the cube in data/elias20/ (data/README.md)
 
 Only the red-shifted (far) half of each ring is detected, so:
   * trace.mode = "single" (one peak per position),
@@ -39,7 +39,7 @@ start = wa.fit("power-law", n_boot=0, y_offsets=ys, label="power-law-first")
 
 # --- 3. adopted fit: broken power law, traces guided by the starting fit ---
 bpl = wa.fit("broken-power-law", guide=start, start_from=start, iterations=2,
-             n_boot=100, y_offsets=ys)
+             n_boot=100, y_offsets=ys, label="broken-power-law")
 print(bpl.summary())
 
 # --- 3b. rotation: j(z) or a constant j, and measured cut by cut ----------

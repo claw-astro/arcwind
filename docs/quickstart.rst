@@ -24,7 +24,12 @@ inclination, and the position angles of the disk and of the wind lobe:
    [cuts]
    y_offsets_arcsec = {start = 0.3, stop = 2.0, step = 0.15}
 
-Everything else has a default (see :doc:`configuration`).
+Everything else has a default (see :doc:`configuration`). Relative paths
+(``fits_file``, ``output.dir``) are relative to the configuration file; a tidy layout
+is one folder per source for the data and one for the results, e.g.
+``data/mysource/mysource_CO.fits`` with ``fits_file = "data/mysource/mysource_CO.fits"``
+and ``output.dir = "output/mysource"`` (the examples use ``examples/data/<source>/``
+and ``examples/output/<source>/``).
 
 2. Check the data
 -----------------

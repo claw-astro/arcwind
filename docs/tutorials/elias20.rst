@@ -5,6 +5,17 @@ This last tutorial applies everything above to real ALMA data: the adopted
 analysis of the Elias 2-20 wind (DSHARP 12CO 2-1), in
 ``examples/02_elias20_analysis.py`` with ``examples/configs/elias20.toml``.
 
+Data and output folders
+-----------------------
+
+Put the data in ``examples/data/elias20/``: ``Elias20_CO.fits`` (the 12CO cube),
+``Elias20_continuum.fits`` and, optionally, ``Elias20_CO_M0.fits`` (moment-0 map for
+the slit layout). ``configs/elias20.toml`` points to them with paths relative to the
+configuration file, and writes every result to ``examples/output/elias20/``. FITS
+files and the output folder are ignored by git. For another source, use
+``data/<source>/`` and ``output/<source>/`` in the same way
+(``examples/data/README.md``).
+
 What is special
 ---------------
 
@@ -108,13 +119,6 @@ cuts that the model fits poorly even with their own j (mean d^2 > 2) are flagged
 and left out. The summary gives the median j of all well-fitted cuts (with a 16-84%
 bootstrap range over cuts), one j fitted jointly to the detected cuts and one to
 the others, and flags detections that are not adjacent.
-
-For Elias 2-20 no coherent rotation is seen. The two lowest cuts give j = -16 +- 15
-and -21 +- 22 au km/s, two isolated cuts (1.05" and 1.65") exceed 2 sigma with
-positive j while the cuts between them are consistent with zero, and the median of
-the 11 well-fitted cuts is 25 au km/s (16-84%: 7 to 58). Analysis choices matter
-here: with cuts from y = 0.30" the axis offset moved by ~7 au and the two lowest
-cuts showed j ~ -40 to -60 au km/s (against the disk).
 
 .. figure:: ../_static/elias20_rotation_per_cut.png
    :width: 100%

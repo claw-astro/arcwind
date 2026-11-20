@@ -10,7 +10,6 @@ than in the side view). Reads the same saved fit.
 Writes <output.dir>/model_definitions_v2.<fig_format>.
 """
 import argparse
-import json
 import os
 
 import numpy as np
@@ -320,8 +319,6 @@ def main():
             transform=ax.transAxes, fontsize=10.8, ha="left", va="bottom")
     ax.annotate(r"$x_c$", (xc, ax.get_ylim()[0]), xytext=(4, 5), textcoords="offset points",
                 fontsize=12.2, va="bottom", ha="left")
-    xl_, yl_ = ax.get_xlim(), ax.get_ylim()
-    vmid = 0.5 * (vlo + vhi)
     for deg in (0, 90, 180, 270):
         k = int(round(deg / 360 * (len(phi) - 1)))
         if ok[k]:
