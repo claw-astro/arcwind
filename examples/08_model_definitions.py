@@ -191,16 +191,27 @@ def main():
     dpos = dpos + 0.09 * Zmax * nrm_
     ax.text(dpos[0], dpos[1], "disk", color="0.45",
             fontsize=11.5, ha="center", va="center", rotation=dang, rotation_mode="anchor")
-    # theta, between the near wall and a line parallel to the axis
-    zt = 0.5 * Zmax
-    q = zt * zhat - Rz(zt) * yw
-    rth = 0.3 * Zmax
-    pz = (q[0] + 1.15 * rth * zhat[0], q[1] + 1.15 * rth * zhat[1])
-    ax.plot([q[0], pz[0]], [q[1], pz[1]], color="k", lw=0.8, ls=":")
-    wall = zhat - T * yw
-    tm = arc(ax, q, rth, np.arctan2(zhat[1], zhat[0]), np.arctan2(wall[1], wall[0]))
-    ax.text(q[0] + 0.78 * rth * np.cos(tm), q[1] + 0.78 * rth * np.sin(tm), r"$\theta$",
+    # theta: measured from the axis, between +z and a line parallel to the near wall
+    za = 0.42 * Zmax
+    A = za * zhat                                    # point on the axis
+    wall = zhat - T * yw                             # direction of the near wall
+    wall = wall / np.hypot(*wall)
+    lw_ = 0.50 * Zmax
+    ax.plot([A[0], A[0] + lw_ * wall[0]], [A[1], A[1] + lw_ * wall[1]], color=RED, lw=0.9,
+            ls=(0, (4, 2)))
+    rth = 0.42 * Zmax
+    tm = arc(ax, A, rth, np.arctan2(zhat[1], zhat[0]), np.arctan2(wall[1], wall[0]))
+    ax.text(A[0] + 1.18 * rth * np.cos(tm), A[1] + 1.18 * rth * np.sin(tm), r"$\theta$",
             fontsize=14.9, ha="center", va="center")
+    # R0: from the axis to the base of the near wall, along the midplane
+    b0 = -P["R0_au"] * yw
+    off = -0.09 * Zmax * zhat                        # offset from the disk band, outside the cone
+    ax.annotate("", xy=b0 + off, xytext=off,
+                arrowprops=dict(arrowstyle="<->,head_length=0.25,head_width=0.15", color="k", lw=0.8,
+                                shrinkA=0, shrinkB=0))
+    for e_ in (np.zeros(2), b0):                     # short ticks back to the disk
+        ax.plot([e_[0], e_[0] + 1.1 * off[0]], [e_[1], e_[1] + 1.1 * off[1]], color="k", lw=0.5)
+    ax.text(*(0.5 * b0 + 1.9 * off), r"$R_0$", fontsize=13.5, ha="center", va="center")
     # one ring: radius R at height z1
     z1 = 0.6 * Zmax
     c1 = z1 * zhat
