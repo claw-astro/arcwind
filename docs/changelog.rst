@@ -8,6 +8,8 @@ Unreleased
   governance (``GOVERNANCE.md``) and Code of Conduct, summarized in a new docs
   page, :doc:`contributing`; issue and pull-request templates.
 * Acknowledgment of AI assistance, with the authors' confirmation of review.
+* Statement of need (README and the front page of the docs).
+* Where to download the Elias 2-20 data (DSHARP Data Release).
 * Python 3.10 or later is required (Python 3.8 and 3.9 have reached end of life and
   can no longer be installed on current CI machines). Tests run on 3.10 to 3.13.
 

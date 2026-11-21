@@ -14,6 +14,19 @@ examples/
 
 FITS files are ignored by git (`.gitignore`), so the cubes stay on your disk only.
 
+## Getting the Elias 2-20 data
+
+The Elias 2-20 files are the fiducial images of the DSHARP ALMA Large Program
+(Andrews et al. 2018, ApJL 869, L41), public in the
+[DSHARP Data Release](https://almascience.org/alma-data/lp/DSHARP)
+(mirror: <https://bulk.cv.nrao.edu/almadata/lp/DSHARP/>). From the row for
+Elias 20, download the 12CO J=2-1 image cube and the 1.25 mm continuum image, and
+save them in `data/elias20/` as `Elias20_CO.fits` and `Elias20_continuum.fits`.
+The moment-0 map (`Elias20_CO_M0.fits`) is optional; it is only used as the
+background of the slit-layout figure and can be made from the cube (e.g. with
+`bettermoments`). The calibrated measurement sets are also in the data release
+and in the ALMA archive (project 2016.1.00484.L).
+
 ## Another source
 
 1. Make `data/<source>/` and put its cube (and continuum, moment-0 map) there.

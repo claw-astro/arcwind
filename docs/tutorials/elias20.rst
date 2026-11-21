@@ -8,6 +8,11 @@ analysis of the Elias 2-20 wind (DSHARP 12CO 2-1), in
 Data and output folders
 -----------------------
 
+The data are the public fiducial images of the DSHARP ALMA Large Program
+(Andrews et al. 2018): download the Elias 20 12CO J=2-1 image cube and continuum
+image from the `DSHARP Data Release <https://almascience.org/alma-data/lp/DSHARP>`_
+(details in ``examples/data/README.md``).
+
 Put the data in ``examples/data/elias20/``: ``Elias20_CO.fits`` (the 12CO cube),
 ``Elias20_continuum.fits`` and, optionally, ``Elias20_CO_M0.fits`` (moment-0 map for
 the slit layout). ``configs/elias20.toml`` points to them with paths relative to the
