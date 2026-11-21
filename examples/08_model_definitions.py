@@ -185,7 +185,7 @@ def main():
     lo_end = -Dm * yw if (-yw)[1] < 0 else Dm * yw
     dang = np.degrees(np.arctan2(yw[1], yw[0]))
     dang = dang - 180 if dang > 90 else (dang + 180 if dang < -90 else dang)
-    dpos = 0.5 * lo_end
+    dpos = -0.62 * lo_end
     nrm_ = np.array([-yw[1], yw[0]])
     nrm_ = nrm_ if nrm_[1] > 0 else -nrm_
     dpos = dpos + 0.09 * Zmax * nrm_
@@ -218,13 +218,16 @@ def main():
     p90 = c1 + Rz(z1) * yw
     ax.plot([c1[0], p90[0]], [c1[1], p90[1]], color="k", lw=1.0)
     ax.text(*(0.5 * (c1 + p90)), r" $R(z)$", fontsize=13.5, va="top")
-    # inclination: between +z and the line of sight through the star
-    los = np.array([0.0, np.sign(zhat[1]) or 1.0])
-    ri = 0.22 * Zmax
+    # inclination: tilt of the disk from the plane of the sky (horizontal here)
     ax.axvline(0, color="k", lw=0.8, ls="--", zorder=1)   # line of sight through the star
-    tm = arc(ax, (0, 0), ri, np.arctan2(zhat[1], zhat[0]), np.arctan2(los[1], los[0]))
-    ax.text(1.22 * ri * np.cos(tm), 1.22 * ri * np.sin(tm), r"$i$", fontsize=14.9, ha="center",
-            va="center")
+    ri = 0.30 * Zmax
+    dlo = yw if yw[0] < 0 else -yw                        # lower-left half of the disk
+    ax.plot([0, -1.15 * ri], [0, 0], color="0.35", lw=0.8, ls=":")
+    ax.text(-1.15 * ri, 0.015 * Zmax, "sky\nplane", fontsize=10, color="0.35",
+            ha="left", va="bottom")
+    tm = arc(ax, (0, 0), ri, np.pi, np.arctan2(dlo[1], dlo[0]) % (2 * np.pi))
+    ax.text(1.18 * ri * np.cos(tm), 1.18 * ri * np.sin(tm), r"$i$", fontsize=14.9,
+            ha="center", va="center")
 
     # observer
     top = max(allp[:, 1].max(), 0) + 0.12 * Zmax
