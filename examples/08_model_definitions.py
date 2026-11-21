@@ -115,9 +115,9 @@ def main():
         Xa = (P["xoff_au"] + P["xslope"] * zr + Rr * np.cos(ph)) / dist
         Ya = (zr * si + s * Rr * np.sin(ph) * ci) / dist
         e, n = to_sky(Xa, Ya)
-        ax.plot(np.where(nr, e, np.nan), np.where(nr, n, np.nan), color=RED, lw=1.0)
-        ax.plot(np.where(~nr, e, np.nan), np.where(~nr, n, np.nan), color=RED, lw=0.8,
-                ls=(0, (3, 2)), alpha=0.75)
+        ax.plot(np.where(~nr, e, np.nan), np.where(~nr, n, np.nan), color=RED, lw=1.0)  # far half
+        ax.plot(np.where(nr, e, np.nan), np.where(nr, n, np.nan), color=RED, lw=0.8,
+                ls=(0, (3, 2)), alpha=0.75)                                            # near half
     xh = 1.6
     w = cfg.SLIT_WIDTH_ARCSEC or 0.1
     e, n = to_sky(np.array([-xh, xh, xh, -xh]), np.array([y0 - w / 2] * 2 + [y0 + w / 2] * 2))
@@ -268,10 +268,13 @@ def main():
     ax.text(0.05, 1.42, r"$+y_w$", fontsize=12.2, va="bottom", ha="left")
     ax.plot(0, 0, "o", mfc="w", mec="k", ms=11)
     ax.plot(0, 0, "k.", ms=4)
-    ax.annotate(r"axis: $+z$ and $V_z$" "\nout of the page", xy=(-0.06, 0.06),
+    ax.annotate("disk center ($x=0$):\n" r"$+z$ out of the page", xy=(-0.06, 0.06),
                 xytext=(-0.62, 0.62), fontsize=10.1, ha="right", va="bottom",
                 arrowprops=dict(arrowstyle="-", lw=0.6, color="0.3", shrinkA=0, shrinkB=4))
     ax.plot(xc0, 0, "+", color=RED, ms=9, mew=1.4)
+    ax.annotate("ring center\n" r"(wind axis, $V_z$)", xy=(xc0 + 0.04, -0.04),
+                xytext=(1.3, -0.45), fontsize=10.1, ha="left", va="top", color=RED,
+                arrowprops=dict(arrowstyle="-", lw=0.6, color=RED, shrinkA=2, shrinkB=3))
     # axis offset of the ring center
     ax.plot([xc0, xc0], [0, -0.32], color="k", lw=0.6, ls=":")
     ax.annotate("", xy=(xc0, -0.27), xytext=(0, -0.27),
@@ -304,7 +307,8 @@ def main():
     arrow(ax, (rD * np.cos(a_[-3]), rD * np.sin(a_[-3])), (rD * np.cos(a_[-1]), rD * np.sin(a_[-1])),
           color="0.4", lw=1.3)
     ax.text(rD * np.cos(np.radians(212)) - 0.12, rD * np.sin(np.radians(212)) - 0.1,
-            "disk\nrotation", fontsize=10.1, color="0.4", ha="center", va="top")
+            "disk\nrotation\n" rf"($\epsilon_d={dsense:+d}$)".replace("-", "\u2212"),
+            fontsize=10.1, color="0.4", ha="center", va="top")
     ax.set_xlim(-1.5, 1.88)
     ax.set_ylim(-1.4, 1.65)
     ax.set_aspect("equal")
@@ -322,7 +326,8 @@ def main():
         f = np.clip(z / ZREF, 1e-3, None) ** P["qv"]
         Vzz, Vrr = P["Vz"] * f, P["Vr"] * f
     X = (P["xoff_au"] + P["xslope"] * z + R * np.cos(phi)) / dist
-    v = vsys - s * Vzz * ci + Vrr * si * np.sin(phi) + P["j"] / R * si * np.cos(phi)
+    jz = P["j"] * (np.clip(np.where(np.isfinite(z), z, ZREF), 1e-3, None) / ZREF) ** P.get("qj", 0.0)
+    v = vsys - s * Vzz * ci + Vrr * si * np.sin(phi) + jz / R * si * np.cos(phi)
     ok = np.isfinite(z)
     far = ok & (np.sin(phi) >= 0)
     near = ok & (np.sin(phi) < 0)
@@ -353,7 +358,7 @@ def main():
         k = int(round(deg / 360 * (len(phi) - 1)))
         if ok[k]:
             ax.plot(X[k], v[k], "o", color=RED, ms=5, zorder=4)
-            off = {0: (22, 14), 90: (48, 22), 180: (-28, 4), 270: (24, -12)}[deg]
+            off = {0: (22, 14), 90: (48, 22), 180: (-28, 13), 270: (24, -12)}[deg]
             lab_ = rf"$\phi$ = {deg}°" if deg == 90 else f"{deg}°"
             ax.annotate(lab_, (X[k], v[k]), xytext=off,
                         textcoords="offset points", ha="center", va="center", fontsize=11.5)
