@@ -416,7 +416,7 @@ class WindAnalysis:
         """``save``: True (to ``output.dir``), False, or a file path."""
         if save:
             path = save if isinstance(save, str) else self.config.outpath(name)
-            fig.savefig(path, dpi=self.config.output.dpi)
+            fig.savefig(path, dpi=self.config.output.dpi, bbox_inches="tight", pad_inches=0.05)
         return fig
 
     def _r(self, result, lobe):

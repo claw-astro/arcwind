@@ -215,7 +215,7 @@ def main():
     from arcwind.plotting._style import thin_ticks
     thin_ticks(fig, 4)
     out = wk.figpath(cfg, "ring_schematic")
-    fig.savefig(out, dpi=cfg.FIG_DPI)
+    fig.savefig(out, dpi=cfg.FIG_DPI, bbox_inches="tight", pad_inches=0.05)
     print(f"[schematic] wrote {out}")
 
 

@@ -384,7 +384,7 @@ def main():
                      va="bottom")
 
     out = wk.figpath(cfg, "model_definitions")
-    fig.savefig(out, dpi=cfg.FIG_DPI)
+    fig.savefig(out, dpi=cfg.FIG_DPI, bbox_inches="tight", pad_inches=0.05)
     print(f"[defs] cone from {src} values; wrote {out}")
 
 

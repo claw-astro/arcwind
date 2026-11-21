@@ -8,7 +8,7 @@ import numpy as np
 STYLE = "classic"
 RC = {"font.size": 14, "axes.linewidth": 2.0, "font.family": "sans-serif",
       "font.weight": "500", "mathtext.bf": "serif:normal",
-      "savefig.bbox": "tight",
+      "savefig.bbox": "tight", "savefig.pad_inches": 0.05,
       # readability on top of 'classic': no offset labels, scientific notation for
       # very small/large numbers, a little room above and below curves
       "axes.formatter.useoffset": False, "axes.formatter.limits": (-4, 5),
