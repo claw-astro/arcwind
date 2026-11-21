@@ -1,6 +1,14 @@
 Changelog
 =========
 
+Unreleased
+----------
+
+* Contributing guide (``CONTRIBUTING.md``), support statement (``SUPPORT.md``),
+  governance (``GOVERNANCE.md``) and Code of Conduct, summarized in a new docs
+  page, :doc:`contributing`; issue and pull-request templates.
+* Acknowledgment of AI assistance, with the authors' confirmation of review.
+
 0.3.0
 -----
 

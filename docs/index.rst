@@ -76,4 +76,5 @@ outflow to
    api/index
    cli
    citing
+   contributing
    changelog

@@ -132,11 +132,27 @@ tests/            pytest suite
 Please cite Louvet et al. (2018, A&A 618, A120), whose method arcwind
 generalizes.
 
+## Contributing, support and governance
+
+Questions, bug reports and contributions are welcome through the
+[issue tracker](https://github.com/claw-astro/arcwind/issues).
+
+- [CONTRIBUTING.md](CONTRIBUTING.md): how to report a problem, set up a
+  development copy, and propose a change (tests, style, pull requests).
+- [SUPPORT.md](SUPPORT.md): where to get help and what response to expect.
+- [GOVERNANCE.md](GOVERNANCE.md): who maintains the package and how decisions
+  and releases are made.
+- [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md): the Code of Conduct.
+
 ## Acknowledgments
 
-Portions of this package—including initial scaffolding, unit tests, and
-documentation—were developed with assistance from [Claude](https://claude.ai) by
-Anthropic. All code has been reviewed and tested by the maintainers.
+Portions of this package—including initial scaffolding, unit tests, code
+refactoring, figure generation, and documentation—were developed with assistance
+from Claude (Opus 5.5) by Anthropic. All code has been reviewed and tested by the
+maintainers. The human authors reviewed, edited and validated all AI-assisted
+outputs, and made the core design decisions: the scientific method, the wind
+model and its parameterization, the fitting and uncertainty strategy, and the
+structure and interfaces of the package.
 
 ## License
 

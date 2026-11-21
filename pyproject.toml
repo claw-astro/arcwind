@@ -30,7 +30,10 @@ all = ["astropy>=5", "pyyaml>=6", "cmasher"]
 arcwind = "arcwind.cli:main"
 
 [project.urls]
-Documentation = "https://arcwind.readthedocs.io"
+Documentation = "https://claw-astro.github.io/arcwind/"
+Source = "https://github.com/claw-astro/arcwind"
+Issues = "https://github.com/claw-astro/arcwind/issues"
+Changelog = "https://claw-astro.github.io/arcwind/changelog.html"
 
 [tool.setuptools.dynamic]
 version = {attr = "arcwind._version.__version__"}
