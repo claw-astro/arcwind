@@ -22,7 +22,7 @@ Minnesota). Support is provided on a best-effort basis.
 - Bugs that give wrong results take priority over new features.
 - Fixes go into the latest release; older versions are not patched.
 - Supported Python versions are those tested in continuous integration
-  (currently 3.8 to 3.13).
+  (currently 3.10 to 3.13).
 
 ## Scope
 

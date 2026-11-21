@@ -66,7 +66,7 @@ real data, and keep random seeds fixed so results are reproducible.
 
 **Code.**
 - Follow the existing style (PEP 8, line length about 95 characters) and keep
-  the package importable on Python 3.8.
+  the package working on Python 3.10, the oldest version supported.
 - Put units in names where they matter (`z_au`, `vz_kms`, `y0_arcsec`).
 - New options belong in the configuration classes in `config.py`, each with a
   default, a unit and a one-line description; the configuration reference in the

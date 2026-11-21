@@ -44,7 +44,7 @@ pip install -e ".[all]"        # numpy, scipy, matplotlib + astropy, pyyaml, cma
 pytest                         # ~20 s, on synthetic cubes
 ```
 
-Python 3.8 or later (3.10+ recommended).
+Python 3.10 or later.
 
 ## Quick start
 

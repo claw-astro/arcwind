@@ -7,12 +7,16 @@ name = "arcwind"
 dynamic = ["version"]
 description = "arcwind (Analysis of Resolved Conical Winds In Nascent Disks): geometry and kinematics of protoplanetary disk winds from transverse position-velocity diagrams"
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.10"
 license = {text = "MIT"}
 authors = [{name = "Charles J. Law"}]
 keywords = ["astronomy", "protoplanetary disks", "disk winds", "ALMA", "kinematics"]
 classifiers = [
     "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
     "Intended Audience :: Science/Research",
     "Topic :: Scientific/Engineering :: Astronomy",
     "License :: OSI Approved :: MIT License",

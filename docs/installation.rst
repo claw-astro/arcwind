@@ -1,7 +1,7 @@
 Installation
 ============
 
-arcwind needs Python 3.8 or later (3.10+ recommended), with numpy, scipy and matplotlib.
+arcwind needs Python 3.10 or later, with numpy, scipy and matplotlib.
 
 .. code-block:: bash
 
