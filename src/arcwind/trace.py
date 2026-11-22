@@ -408,7 +408,12 @@ class TraceExtractor:
             nmin = tc.min_points if min_points is None else min_points
             if tr.n >= nmin:              # counted before thinning (every pixel)
                 dx = 0.5 * cube.beam_x if tc.dx_arcsec is None else tc.dx_arcsec
-                out[float(y0)] = tr.thinned(dx, cube.x[0], cube.step)
+                # the points are on a grid of every `stride` pixels (trace.xsmooth_arcsec):
+                # thin on that grid, not on the pixel grid (which would keep only one
+                # point in lcm(stride, dx/step) pixels)
+                stride = max(1, int(round(tc.xsmooth_arcsec / cube.step))) \
+                    if tc.xsmooth_arcsec else 1
+                out[float(y0)] = tr.thinned(dx, cube.x[0], cube.step * stride)
             else:
                 cube._log(f"cut y0={y0:.2f}\": only {tr.n} trace points, skipped")
         return out

@@ -13,7 +13,12 @@ Unreleased
 * ``trace.fit_floor_snr``: the window of each Gaussian fit also stops where the
   profile falls below this many times the rms, so that at low S/N it does not run
   into the noise and get clipped by a mask edge (default: 2 in ``"ring"`` mode,
-  off otherwise, which leaves earlier results unchanged). Saved traces and
+  off otherwise, which leaves earlier results unchanged).
+* Fix: with ``trace.xsmooth_arcsec`` set, thinning the trace to ``trace.dx_arcsec``
+  kept far fewer points than intended (one per least common multiple of the two
+  strides, e.g. one every 12 pixels instead of every 3 for 0.1" smoothing on 0.03"
+  pixels). Cuts with X smoothing now keep about one point per ``dx_arcsec`` or per
+  smoothing length, whichever is larger. Cuts without X smoothing are unchanged. Saved traces and
   results from earlier versions still load.
 * ``MockWind.tall_ring_like()``: a synthetic wind with tall, narrow rings, used to
   test the new mode.
