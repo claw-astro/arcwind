@@ -18,7 +18,12 @@ Unreleased
   kept far fewer points than intended (one per least common multiple of the two
   strides, e.g. one every 12 pixels instead of every 3 for 0.1" smoothing on 0.03"
   pixels). Cuts with X smoothing now keep about one point per ``dx_arcsec`` or per
-  smoothing length, whichever is larger. Cuts without X smoothing are unchanged. Saved traces and
+  smoothing length, whichever is larger. Cuts without X smoothing are unchanged.
+* ``"ring"`` mode, guided extraction: the guide (``guide_dv_kms``,
+  ``guide_dx_beam``) now only chooses which peak is traced; the Gaussian is fitted
+  over the whole profile within the contamination mask. Before, broad profiles
+  were cut at the edge of the guide window and dropped as clipped, so a guided
+  fit kept only a fraction of the points. Saved traces and
   results from earlier versions still load.
 * ``MockWind.tall_ring_like()``: a synthetic wind with tall, narrow rings, used to
   test the new mode.

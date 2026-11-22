@@ -134,13 +134,16 @@ def _gauss(v, a, mu, sig):
 
 
 def _peak_fit(u, prof, allowed, rms, snr_min, fit_frac, drop_clipped, du, sig_max,
-              near=None, floor_snr=0.0):
+              near=None, floor_snr=0.0, window=None):
     """Gaussian fit of a 1-D profile ``prof(u)`` around its peak in ``allowed``.
 
     ``near``: if given, take the significant local maximum closest to any of these
     values of ``u`` instead of the brightest. The fitted window extends while the
     profile is above ``fit_frac`` x the peak and above ``floor_snr`` x the rms (at low
     S/N, ``fit_frac`` x the peak alone lets the window run into the noise).
+    ``window``: if given, the peak is chosen in ``allowed`` (e.g. near a guide) but the
+    fitted window may extend over ``window`` (e.g. the contamination mask only), and
+    only edges of ``window`` count as clipping the profile.
     Returns ``(mu, sigma, snr)`` or None.
     """
     if allowed.sum() < 3:
@@ -158,20 +161,21 @@ def _peak_fit(u, prof, allowed, rms, snr_min, fit_frac, drop_clipped, du, sig_ma
     if peak < snr_min * rms:
         return None
     n = len(u)
+    win = allowed if window is None else (window | allowed)
     edge = max(fit_frac * peak, floor_snr * rms)
     lo = hi = ip
-    while lo - 1 >= 0 and allowed[lo - 1] and prof[lo - 1] > edge:
+    while lo - 1 >= 0 and win[lo - 1] and prof[lo - 1] > edge:
         lo -= 1
-    while hi + 1 < n and allowed[hi + 1] and prof[hi + 1] > edge:
+    while hi + 1 < n and win[hi + 1] and prof[hi + 1] > edge:
         hi += 1
-    clipped = ((lo - 1 >= 0 and not allowed[lo - 1] and prof[lo - 1] > edge) or
-               (hi + 1 < n and not allowed[hi + 1] and prof[hi + 1] > edge))
+    clipped = ((lo - 1 >= 0 and not win[lo - 1] and prof[lo - 1] > edge) or
+               (hi + 1 < n and not win[hi + 1] and prof[hi + 1] > edge))
     if clipped and drop_clipped:
         return None
     if hi - lo < 2:
-        if lo - 1 >= 0 and allowed[lo - 1]:
+        if lo - 1 >= 0 and win[lo - 1]:
             lo -= 1
-        if hi + 1 < n and allowed[hi + 1]:
+        if hi + 1 < n and win[hi + 1]:
             hi += 1
     if hi - lo < 2:
         return None
@@ -279,15 +283,16 @@ class TraceExtractor:
                 dvg = v[:, None] - gvn[None, :]
                 gmask = np.any((dvg >= -dlo) & (dvg <= dhi), axis=1)
             for side in ((0,) if t.mode == "single" else (-1, +1)):
-                allowed = (~excl[:, j]) & np.isfinite(spec)
-                if gmask is not None:
-                    allowed &= gmask
+                hard = (~excl[:, j]) & np.isfinite(spec)
                 if side < 0:
-                    allowed &= v < v_split[j]
+                    hard &= v < v_split[j]
                 elif side > 0:
-                    allowed &= v > v_split[j]
+                    hard &= v > v_split[j]
+                allowed = hard if gmask is None else hard & gmask
+                # ring mode: the guide picks the peak, the fit window is the mask only
                 r = _peak_fit(v, spec, allowed, rms, snr_min, t.fit_frac, t.drop_clipped,
-                              dv, 20.0, gvn if nearest else None, floor)
+                              dv, 20.0, gvn if nearest else None, floor,
+                              hard if (gmask is not None and t.mode == "ring") else None)
                 if r is None:
                     continue
                 mu, sg, snr = r
@@ -328,6 +333,7 @@ class TraceExtractor:
             base = (~excl[k, :]) & np.isfinite(row)
             if base.sum() < 3:
                 continue
+            hard_base = base.copy()
             gxn = None
             if guide is not None:
                 near = np.abs(gv - v[k]) <= 0.5 * dv_eff + dv
@@ -346,11 +352,12 @@ class TraceExtractor:
             else:
                 continue
             for side in (-2, +2):
-                allowed = base & ((xs < xsplit) if side < 0 else (xs > xsplit))
+                half = (xs < xsplit) if side < 0 else (xs > xsplit)
+                allowed = base & half
                 r = _peak_fit(xs, row, allowed, rms, t.snr_min, t.fit_frac, t.drop_clipped,
                               step, 10 * bx, gxn if (gxn is not None and
                                                     t.peak_choice == "nearest") else None,
-                              floor)
+                              floor, hard_base & half if gxn is not None else None)
                 if r is None:
                     continue
                 mu, sg, snr = r
