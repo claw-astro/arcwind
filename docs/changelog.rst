@@ -4,6 +4,16 @@ Changelog
 Unreleased
 ----------
 
+* New trace mode ``trace.mode = "ring"`` for tall, narrow rings (a narrow, fast
+  cone): in addition to the wing points (one velocity per position), the left and
+  right walls of each ring are traced channel by channel (one position per
+  velocity). Wall points carry their own position error (``Trace.xerr``) and are
+  used by the global and per-cut fits; they are drawn as open squares. New options
+  ``trace.wall_max_fwhm_beam`` and ``trace.guide_dx_beam``. Saved traces and
+  results from earlier versions still load.
+* ``MockWind.tall_ring_like()``: a synthetic wind with tall, narrow rings, used to
+  test the new mode.
+
 * Contributing guide (``CONTRIBUTING.md``), support statement (``SUPPORT.md``),
   governance (``GOVERNANCE.md``) and Code of Conduct, summarized in a new docs
   page, :doc:`contributing`; issue and pull-request templates.

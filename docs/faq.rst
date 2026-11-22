@@ -32,6 +32,14 @@ Some cuts are skipped
    They have fewer than ``trace.min_points`` points. Look at them with
    ``wa.pv(y0).plot(show_mask=True)``; widen the masks or lower ``snr_min``.
 
+Only a few trace points per cut, although the rings are bright
+   If the rings are much taller in velocity than they are wide (a narrow, fast
+   cone), most of each ring is a steep wall. The default ``trace.mode = "wings"``
+   fits one velocity per position, and along a wall that profile is broad or cut
+   by a mask, so the point is dropped. Use ``trace.mode = "ring"``: the walls are
+   then traced channel by channel (open squares in ``plot_cuts``). If the walls
+   are patchy, raise ``trace.wall_max_fwhm_beam`` (default 2).
+
 The noise check says CHECK
    A noise channel contains emission or one end of the cube is noisier: set
    ``noise.vel_ranges_kms`` to line-free channels. Blank channels (all zero or

@@ -80,6 +80,12 @@ orthogonal distance to the model curve,
    \left(\frac{v_k - v(\phi)}{\sigma_k}\right)^2\right],
 
 and :math:`\sum_k\rho(w_k^2d_k^2)` is minimized (:mod:`arcwind.fitting`).
+For points traced along velocity, :math:`\sigma_k` is the velocity error of the
+Gaussian centroid and :math:`\sigma_x` a fraction of the beam. With
+``trace.mode = "ring"`` the steep walls of tall rings are also traced along
+position in each channel; for those points the roles swap, with a position error
+from the centroid along X and a velocity error of half the (smoothed) channel
+width. Both kinds of point enter the same sum.
 Uncertainties come from the covariance matrix and from refits to resampled cuts:
 a bootstrap (cuts drawn with replacement) or a jackknife (one cut left out at a
 time). The refits run in parallel.

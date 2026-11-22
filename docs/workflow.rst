@@ -76,7 +76,11 @@ disk, cloud and unrelated emission outside:
 * ``x_cone`` -- a spatial window that widens with height;
 * ``kepler`` -- the Keplerian disk mask.
 
-Choose ``trace.mode = "single"`` if only one half of each ring is seen. Faint
+Choose ``trace.mode = "single"`` if only one half of each ring is seen, and
+``trace.mode = "ring"`` if the rings are much taller in velocity than they are
+wide (a narrow, fast cone): the default ``"wings"`` mode traces one velocity per
+position and misses the steep sides of such rings, which ``"ring"`` traces
+channel by channel (open squares in the cut plots). Faint
 cuts can get their own settings with ``[cuts.overrides."y0"]``.
 
 3. Fit, from simple to complex

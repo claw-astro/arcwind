@@ -25,8 +25,12 @@ def _draw_cut(ax, cube, y0, results, trace, n_boot, show_mask):
         for b in main.boot[:n_boot]:
             draw_curve(ax, main.curve(y0, b), color="gold", lw=0.4, alpha=0.4)
     if trace is not None and trace.n:
-        ax.errorbar(trace.x, trace.v, yerr=trace.err, fmt="o", ms=3, color="k", mfc="k",
-                    mec="k", lw=0.6, capsize=1.5, zorder=5)
+        wl = np.abs(np.asarray(trace.side)) == 2       # wall points (mode="ring")
+        ax.errorbar(trace.x[~wl], trace.v[~wl], yerr=trace.err[~wl], fmt="o", ms=3,
+                    color="k", mfc="k", mec="k", lw=0.6, capsize=1.5, zorder=5)
+        if wl.any():
+            ax.errorbar(trace.x[wl], trace.v[wl], xerr=trace.xerr[wl], fmt="s", ms=3,
+                        color="k", mfc="w", mec="k", lw=0.6, capsize=1.5, zorder=5)
     for k, r in enumerate(results):
         draw_curve(ax, r.curve(y0), color=_COLORS[k % len(_COLORS)], lw=1.3 if k == 0 else 0.9,
                    ls="-" if k == 0 else "--", label=law_label(r.label))

@@ -55,8 +55,12 @@ def plot_pv(pv, ax=None, contours=True, show_mask=False, cmap="magma", gamma=0.5
         ax.contour(pv.x, pv.v, pv.excluded.astype(float), levels=[0.5], colors="c",
                    linewidths=0.5)
     if trace is not None and trace.n:
-        ax.errorbar(trace.x, trace.v, yerr=trace.err, fmt="o", ms=3, color="k", mfc="k",
-                    mec="k", lw=0.6, capsize=1.5, zorder=5)
+        wl = np.abs(np.asarray(trace.side)) == 2       # wall points (mode="ring")
+        ax.errorbar(trace.x[~wl], trace.v[~wl], yerr=trace.err[~wl], fmt="o", ms=3,
+                    color="k", mfc="k", mec="k", lw=0.6, capsize=1.5, zorder=5)
+        if wl.any():
+            ax.errorbar(trace.x[wl], trace.v[wl], xerr=trace.xerr[wl], fmt="s", ms=3,
+                        color="k", mfc="w", mec="k", lw=0.6, capsize=1.5, zorder=5)
     for m in ([] if model is None else (model if isinstance(model, (list, tuple)) else [model])):
         c = m.curve(pv.y0) if hasattr(m, "curve") else m
         draw_curve(ax, c, color="lime", lw=1.0)

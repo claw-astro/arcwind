@@ -112,6 +112,25 @@ class MockWind:
         p.update(changes)
         return cls(**p)
 
+    @classmethod
+    def tall_ring_like(cls, **changes):
+        """A narrow, fast cone seen at i = 60 deg: tall, narrow rings in the PV
+        diagrams (velocity extent >> spatial extent), whose steep walls need
+        ``trace.mode = "ring"``.
+
+        Geometry and star loosely follow CW Tau (131.6 pc, 0.71 Msun, PA 240 deg,
+        Vsys 6.3 km/s); a cone of half-angle 18 deg from R0 = 5 au, poloidal speed
+        24 km/s and j = -120 au km/s, observed with a 0.28" x 0.23" beam.
+        """
+        p = dict(inclination_deg=60.0, disk_pa_deg=240.0, wind_pa_deg=150.0,
+                 approaching=True, disk_sense=-1, vsys=6.3, mstar_msun=0.71,
+                 distance_pc=131.6, R0_au=5.0, theta_deg=18.0, vp=24.0, j=-120.0,
+                 zmax_au=400.0, shell_sigma_au=3.0, pix_arcsec=0.04, npix=200,
+                 beam=(0.28, 0.23, 0.0), dv=0.32, v0=-20.0, nchan=110, rms_jy=1.0e-3,
+                 disk_rout_au=120.0, name="tall-ring mock")
+        p.update(changes)
+        return cls(**p)
+
     @property
     def Vz(self):
         return self.vp * np.cos(np.radians(self.theta_deg))

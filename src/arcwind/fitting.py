@@ -49,7 +49,8 @@ def odr_distances(curve, trace, sig_x):
     curve : ModelCurve
     trace : Trace
     sig_x : float
-        Position uncertainty (arcsec).
+        Position uncertainty (arcsec) of the points without their own
+        (``trace.xerr``; wall points of ``trace.mode = "ring"`` have one).
 
     Returns
     -------
@@ -60,7 +61,8 @@ def odr_distances(curve, trace, sig_x):
     if ok.sum() < 10:
         return None
     X, v = curve.X[ok], curve.v[ok]
-    d2 = ((trace.x[:, None] - X[None, :]) / sig_x) ** 2 + \
+    sx = trace.x_errors(sig_x)
+    d2 = ((trace.x[:, None] - X[None, :]) / sx[:, None]) ** 2 + \
          ((trace.v[:, None] - v[None, :]) / trace.err[:, None]) ** 2
     return np.sqrt(d2.min(axis=1))
 
@@ -791,7 +793,7 @@ class FitResult:
         if include_traces:
             for key, trs in (("traces", self.traces), ("other_traces", self.other_traces)):
                 d[key] = {f"{y:.4f}": {k: np.asarray(getattr(t, k)).tolist()
-                                       for k in ("x", "v", "err", "side", "snr", "fwhm")}
+                                       for k in Trace.FIELDS}
                           for y, t in trs.items()}
         return d
 
@@ -815,8 +817,7 @@ class FitResult:
         g = ViewGeometry(**d["geometry"])
         def _tr(key):
             return {float(y): Trace(float(y), *(np.asarray(t[k], int if k == "side" else float)
-                                                for k in ("x", "v", "err", "side", "snr",
-                                                          "fwhm")))
+                                                for k in Trace.FIELDS if k in t))
                     for y, t in (d.get(key) or {}).items()}
         tr = _tr("traces")
         return cls(model=m, geometry=g, err=d["err"], free=d["free"], chi2=d["chi2"],

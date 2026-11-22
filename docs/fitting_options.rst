@@ -109,7 +109,10 @@ Traces
      - Effect
    * - ``trace.mode``
      - ``"wings"``
-     - ``"single"`` when only one half of the rings is seen.
+     - ``"single"`` when only one half of the rings is seen; ``"ring"`` for tall,
+       narrow rings: the steep walls are also traced channel by channel (one
+       position per velocity, with a position error), see
+       ``trace.wall_max_fwhm_beam`` and ``trace.guide_dx_beam``.
    * - ``trace.snr_min``
      - ``5``
      - Minimum peak S/N of a trace point.

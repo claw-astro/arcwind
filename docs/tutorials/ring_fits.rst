@@ -36,8 +36,10 @@ The ring fits on the HH 30-like cube are shown in :doc:`hh30_like`.
 
 Without ``ring.cone_half_angle_deg`` the fits run in two passes: every cut with
 theta free, a straight-line fit to R(z), then every cut again with theta fixed.
-For each cut ``trace.mode = "wings"`` splits the blue and red wings at the fitted
-mid-line and refits.
+For each cut ``trace.mode = "wings"`` (or ``"ring"``) splits the blue and red
+wings at the fitted mid-line and refits. With ``"ring"``, the wall points traced
+channel by channel are used by the per-cut fits too, with their own position
+errors.
 
 Combining with a global fit:
 

@@ -166,7 +166,8 @@ class RingFitter:
         if ok.sum() < 10:
             return None, None
         X, v, phi = c.X[ok], c.v[ok], c.phi[ok]
-        d2 = ((tr.x[:, None] - X[None, :]) / self.sig_x) ** 2 + \
+        sx = tr.x_errors(self.sig_x)
+        d2 = ((tr.x[:, None] - X[None, :]) / sx[:, None]) ** 2 + \
              ((tr.v[:, None] - v[None, :]) / tr.err[:, None]) ** 2
         j = np.argmin(d2, axis=1)
         return np.sqrt(d2[np.arange(len(j)), j]), phi[j]

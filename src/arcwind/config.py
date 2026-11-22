@@ -183,8 +183,10 @@ class MaskConfig:
 class TraceConfig:
     """Extraction of the trace (locus of the emission) in each PV diagram."""
     mode: str = opt("wings", "'wings': blue and red wing fitted separately (full rings, "
-                    "Louvet+2018); 'single': one peak per position (partial rings).",
-                    choices=("wings", "single"))
+                    "Louvet+2018); 'single': one peak per position (partial rings); "
+                    "'ring': the wings plus the left and right walls traced channel by "
+                    "channel (tall, narrow rings with steep sides).",
+                    choices=("wings", "single", "ring"))
     snr_min: float = opt(5.0, "Minimum peak S/N of a trace point.")
     fit_frac: float = opt(0.3, "Gaussian fitted to channels above this fraction of the peak.")
     err_inflate: float = opt(2.0, "Velocity error = this x the formal centroid error.")
@@ -206,6 +208,13 @@ class TraceConfig:
                                           "cuts).", "arcsec")
     vsmooth_chan: Optional[int] = opt(None, "Boxcar smoothing of the PV in velocity "
                                       "(channels).")
+    wall_max_fwhm_beam: float = opt(2.0, "mode='ring': keep a wall point (traced along X "
+                                    "in one channel) only if its FWHM along X is below "
+                                    "this x the beam FWHM along X (steep part of the "
+                                    "ring); wider profiles are flat arcs, traced in "
+                                    "velocity instead.")
+    guide_dx_beam: float = opt(1.0, "mode='ring', guided: wall points within +- this x the "
+                               "beam FWHM along X of the model.")
 
 
 @dataclass
