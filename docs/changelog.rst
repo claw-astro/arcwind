@@ -9,7 +9,11 @@ Unreleased
   right walls of each ring are traced channel by channel (one position per
   velocity). Wall points carry their own position error (``Trace.xerr``) and are
   used by the global and per-cut fits; they are drawn as open squares. New options
-  ``trace.wall_max_fwhm_beam`` and ``trace.guide_dx_beam``. Saved traces and
+  ``trace.wall_max_fwhm_beam`` and ``trace.guide_dx_beam``.
+* ``trace.fit_floor_snr``: the window of each Gaussian fit also stops where the
+  profile falls below this many times the rms, so that at low S/N it does not run
+  into the noise and get clipped by a mask edge (default: 2 in ``"ring"`` mode,
+  off otherwise, which leaves earlier results unchanged). Saved traces and
   results from earlier versions still load.
 * ``MockWind.tall_ring_like()``: a synthetic wind with tall, narrow rings, used to
   test the new mode.

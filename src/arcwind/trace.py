@@ -134,11 +134,14 @@ def _gauss(v, a, mu, sig):
 
 
 def _peak_fit(u, prof, allowed, rms, snr_min, fit_frac, drop_clipped, du, sig_max,
-              near=None):
+              near=None, floor_snr=0.0):
     """Gaussian fit of a 1-D profile ``prof(u)`` around its peak in ``allowed``.
 
     ``near``: if given, take the significant local maximum closest to any of these
-    values of ``u`` instead of the brightest. Returns ``(mu, sigma, snr)`` or None.
+    values of ``u`` instead of the brightest. The fitted window extends while the
+    profile is above ``fit_frac`` x the peak and above ``floor_snr`` x the rms (at low
+    S/N, ``fit_frac`` x the peak alone lets the window run into the noise).
+    Returns ``(mu, sigma, snr)`` or None.
     """
     if allowed.sum() < 3:
         return None
@@ -155,12 +158,12 @@ def _peak_fit(u, prof, allowed, rms, snr_min, fit_frac, drop_clipped, du, sig_ma
     if peak < snr_min * rms:
         return None
     n = len(u)
+    edge = max(fit_frac * peak, floor_snr * rms)
     lo = hi = ip
-    while lo - 1 >= 0 and allowed[lo - 1] and prof[lo - 1] > fit_frac * peak:
+    while lo - 1 >= 0 and allowed[lo - 1] and prof[lo - 1] > edge:
         lo -= 1
-    while hi + 1 < n and allowed[hi + 1] and prof[hi + 1] > fit_frac * peak:
+    while hi + 1 < n and allowed[hi + 1] and prof[hi + 1] > edge:
         hi += 1
-    edge = fit_frac * peak
     clipped = ((lo - 1 >= 0 and not allowed[lo - 1] and prof[lo - 1] > edge) or
                (hi + 1 < n and not allowed[hi + 1] and prof[hi + 1] > edge))
     if clipped and drop_clipped:
@@ -187,6 +190,14 @@ def _peak_fit(u, prof, allowed, rms, snr_min, fit_frac, drop_clipped, du, sig_ma
     if not (uu.min() - 0.5 * du <= mu <= uu.max() + 0.5 * du):
         return None
     return mu, sg, peak / rms
+
+
+def _floor(t):
+    """Noise floor (x rms) of the fitted window: ``trace.fit_floor_snr``; auto: 2 in
+    ``mode = "ring"``, none otherwise (the behavior of earlier versions)."""
+    if t.fit_floor_snr is not None:
+        return float(t.fit_floor_snr)
+    return 2.0 if t.mode == "ring" else 0.0
 
 
 class TraceExtractor:
@@ -252,6 +263,7 @@ class TraceExtractor:
             gdv = t.guide_dv_kms
             dlo, dhi = (gdv, gdv) if np.isscalar(gdv) else (gdv[0], gdv[1])
         nearest = guide is not None and t.peak_choice == "nearest"
+        floor = _floor(t)
         for j in range(0, len(xs), stride):
             if excl[:, j].all():
                 continue
@@ -275,7 +287,7 @@ class TraceExtractor:
                 elif side > 0:
                     allowed &= v > v_split[j]
                 r = _peak_fit(v, spec, allowed, rms, snr_min, t.fit_frac, t.drop_clipped,
-                              dv, 20.0, gvn if nearest else None)
+                              dv, 20.0, gvn if nearest else None, floor)
                 if r is None:
                     continue
                 mu, sg, snr = r
@@ -303,6 +315,7 @@ class TraceExtractor:
         nv = max(1, int(t.vsmooth_chan or 1))     # independent channels after smoothing
         dv_eff = nv * dv
         wmax = t.wall_max_fwhm_beam * bx
+        floor = _floor(t)
         if guide is not None:
             gok = np.asarray(guide["valid"], bool)
             gX, gv = np.asarray(guide["X"])[gok], np.asarray(guide["v"])[gok]
@@ -336,7 +349,8 @@ class TraceExtractor:
                 allowed = base & ((xs < xsplit) if side < 0 else (xs > xsplit))
                 r = _peak_fit(xs, row, allowed, rms, t.snr_min, t.fit_frac, t.drop_clipped,
                               step, 10 * bx, gxn if (gxn is not None and
-                                                    t.peak_choice == "nearest") else None)
+                                                    t.peak_choice == "nearest") else None,
+                              floor)
                 if r is None:
                     continue
                 mu, sg, snr = r

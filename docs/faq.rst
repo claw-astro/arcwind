@@ -38,7 +38,9 @@ Only a few trace points per cut, although the rings are bright
    fits one velocity per position, and along a wall that profile is broad or cut
    by a mask, so the point is dropped. Use ``trace.mode = "ring"``: the walls are
    then traced channel by channel (open squares in ``plot_cuts``). If the walls
-   are patchy, raise ``trace.wall_max_fwhm_beam`` (default 2).
+   are patchy, check that ``mask.x_cone`` does not cut the outer edge of the
+   walls (points whose profile reaches a mask edge are dropped), and raise
+   ``trace.wall_max_fwhm_beam`` (default 4) if the walls are broad.
 
 The noise check says CHECK
    A noise channel contains emission or one end of the cube is noisier: set

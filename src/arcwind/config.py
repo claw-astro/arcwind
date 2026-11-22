@@ -189,6 +189,10 @@ class TraceConfig:
                     choices=("wings", "single", "ring"))
     snr_min: float = opt(5.0, "Minimum peak S/N of a trace point.")
     fit_frac: float = opt(0.3, "Gaussian fitted to channels above this fraction of the peak.")
+    fit_floor_snr: Optional[float] = opt(None, "The fitted window also stops where the "
+                                         "profile falls below this x the rms (faint "
+                                         "emission: keeps the window out of the noise); "
+                                         "auto: 2 for mode='ring', none otherwise.")
     err_inflate: float = opt(2.0, "Velocity error = this x the formal centroid error.")
     dx_arcsec: Optional[float] = opt(None, "Spacing of trace points along the cut; auto: "
                                      "half the beam FWHM along X (about two points per "
@@ -208,7 +212,7 @@ class TraceConfig:
                                           "cuts).", "arcsec")
     vsmooth_chan: Optional[int] = opt(None, "Boxcar smoothing of the PV in velocity "
                                       "(channels).")
-    wall_max_fwhm_beam: float = opt(2.0, "mode='ring': keep a wall point (traced along X "
+    wall_max_fwhm_beam: float = opt(4.0, "mode='ring': keep a wall point (traced along X "
                                     "in one channel) only if its FWHM along X is below "
                                     "this x the beam FWHM along X (steep part of the "
                                     "ring); wider profiles are flat arcs, traced in "
