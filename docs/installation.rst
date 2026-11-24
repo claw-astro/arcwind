@@ -7,8 +7,21 @@ arcwind needs Python 3.10 or later, with numpy, scipy and matplotlib.
 
    pip install arcwind                 # from PyPI
    pip install "arcwind[all]"          # + astropy (FITS), PyYAML, cmasher
+   pip install --upgrade arcwind       # update to the latest release
 
-From the source folder:
+The latest development version, straight from GitHub:
+
+.. code-block:: bash
+
+   pip install "arcwind[all] @ git+https://github.com/claw-astro/arcwind.git"
+
+If pip answers ``Could not find a version that satisfies the requirement arcwind
+(from versions: none)``, the Python in use is older than 3.10 (check with
+``python --version``): pip then hides arcwind. Install into an environment with
+Python 3.10 or later, e.g. ``conda create -n arcwind python=3.12`` and
+``conda activate arcwind``.
+
+From the source folder (for development):
 
 .. code-block:: bash
 
