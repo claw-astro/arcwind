@@ -1,0 +1,33 @@
+# Publishes arcwind to PyPI when a GitHub release is published.
+# Uses PyPI "trusted publishing": no token is stored; PyPI checks that the upload
+# comes from this workflow in claw-astro/arcwind (environment "pypi").
+name: publish
+on:
+  release:
+    types: [published]
+  workflow_dispatch:          # manual re-run from the Actions tab
+jobs:
+  pypi:
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      id-token: write         # lets PyPI verify where the upload comes from
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Check that the release tag matches the package version
+        if: github.event_name == 'release'
+        run: |
+          pkg=$(python -c "import re; print(re.search(r'\"(.+?)\"', open('src/arcwind/_version.py').read()).group(1))")
+          tag="${GITHUB_REF_NAME#v}"
+          echo "package version: $pkg   release tag: $tag"
+          test "$pkg" = "$tag" || { echo "::error::tag v$tag does not match __version__ $pkg"; exit 1; }
+      - name: Build
+        run: |
+          pip install build twine
+          python -m build
+          twine check dist/*
+      - uses: pypa/gh-action-pypi-publish@release/v1
