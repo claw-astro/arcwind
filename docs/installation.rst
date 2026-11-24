@@ -5,7 +5,7 @@ arcwind needs Python 3.10 or later, with numpy, scipy and matplotlib.
 
 .. code-block:: bash
 
-   pip install arcwind                 # from PyPI (once released)
+   pip install arcwind                 # from PyPI
    pip install "arcwind[all]"          # + astropy (FITS), PyYAML, cmasher
 
 From the source folder:

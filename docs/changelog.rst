@@ -4,6 +4,15 @@ Changelog
 Unreleased
 ----------
 
+* Nothing yet.
+
+1.0.0 (2026-11-24)
+------------------
+
+First public release (GitHub, PyPI and Zenodo).
+
+* ``CITATION.cff``: citation metadata (GitHub "Cite this repository" button,
+  Zenodo).
 * New trace mode ``trace.mode = "ring"`` for tall, narrow rings (a narrow, fast
   cone): in addition to the wing points (one velocity per position), the left and
   right walls of each ring are traced channel by channel (one position per

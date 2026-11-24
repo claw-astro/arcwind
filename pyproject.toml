@@ -12,6 +12,7 @@ license = {text = "MIT"}
 authors = [{name = "Charles J. Law"}]
 keywords = ["astronomy", "protoplanetary disks", "disk winds", "ALMA", "kinematics"]
 classifiers = [
+    "Development Status :: 5 - Production/Stable",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",

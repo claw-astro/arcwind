@@ -1,12 +1,15 @@
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="docs/_static/logo/arcwind-banner-dark-transparent.svg">
-    <img alt="arcwind" src="docs/_static/logo/arcwind-banner-light-transparent.svg" width="420">
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/claw-astro/arcwind/main/docs/_static/logo/arcwind-banner-dark-transparent.svg">
+    <img alt="arcwind" src="https://raw.githubusercontent.com/claw-astro/arcwind/main/docs/_static/logo/arcwind-banner-light-transparent.svg" width="420">
   </picture>
 </p>
 
 [![tests](https://github.com/claw-astro/arcwind/actions/workflows/tests.yml/badge.svg)](https://github.com/claw-astro/arcwind/actions/workflows/tests.yml)
 [![docs](https://github.com/claw-astro/arcwind/actions/workflows/docs.yml/badge.svg)](https://claw-astro.github.io/arcwind/)
+[![PyPI](https://img.shields.io/pypi/v/arcwind.svg)](https://pypi.org/project/arcwind/)
+[![Python](https://img.shields.io/pypi/pyversions/arcwind.svg)](https://pypi.org/project/arcwind/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/claw-astro/arcwind/blob/main/LICENSE)
 
 **arcwind** (Analysis of Resolved Conical Winds In Nascent Disks) measures the
 geometry and kinematics of protoplanetary disk winds from molecular-line cubes (e.g. ALMA CO). It fits a rotating, expanding
@@ -14,7 +17,7 @@ geometry and kinematics of protoplanetary disk winds from molecular-line cubes (
 perpendicular to the wind axis, and returns the cone, the velocity field, the
 specific angular momentum, and the mass and mass-loss rate of the wind.
 
-![Definitions of the conical wind model, drawn for the Elias 2-20 wind](docs/_static/model_definitions.png)
+![Definitions of the conical wind model, drawn for the Elias 2-20 wind](https://raw.githubusercontent.com/claw-astro/arcwind/main/docs/_static/model_definitions.png)
 
 ## Statement of need
 
@@ -67,6 +70,13 @@ for the edge-on HH 30 outflow:
 ## Installation
 
 ```bash
+pip install arcwind            # numpy, scipy, matplotlib
+pip install "arcwind[all]"     # + astropy (FITS), pyyaml, cmasher
+```
+
+Or, for a development copy with the tests:
+
+```bash
 git clone https://github.com/claw-astro/arcwind.git
 cd arcwind
 pip install -e ".[all]"        # numpy, scipy, matplotlib + astropy, pyyaml, cmasher
@@ -117,20 +127,20 @@ synthetic cube and a matching configuration.
 
 | | |
 |---|---|
-| [`01_quickstart_mock.py`](examples/01_quickstart_mock.py) | a synthetic wind, fitted and compared with the truth |
-| [`02_elias20_analysis.py`](examples/02_elias20_analysis.py) | the Elias 2-20 analysis, step by step |
-| [`03_fitting_options.py`](examples/03_fitting_options.py) | every fitting option, on and off |
-| [`04_custom_velocity_law.py`](examples/04_custom_velocity_law.py) | your own velocity law |
-| [`05_ring_fits_full_rings.py`](examples/05_ring_fits_full_rings.py) | per-cut ring fits (Louvet et al. 2018) |
-| [`06_low_level_api.py`](examples/06_low_level_api.py) | the building blocks |
-| [`07_hh30_like_both_lobes.py`](examples/07_hh30_like_both_lobes.py) | an HH 30-like bipolar wind |
-| [`08`–`10`](examples/) | schematic figures of the model |
-| [`11_elias20_cut_range_test.py`](examples/11_elias20_cut_range_test.py) | Elias 2-20: all cuts vs cuts up to y = 2.0" |
+| [`01_quickstart_mock.py`](https://github.com/claw-astro/arcwind/blob/main/examples/01_quickstart_mock.py) | a synthetic wind, fitted and compared with the truth |
+| [`02_elias20_analysis.py`](https://github.com/claw-astro/arcwind/blob/main/examples/02_elias20_analysis.py) | the Elias 2-20 analysis, step by step |
+| [`03_fitting_options.py`](https://github.com/claw-astro/arcwind/blob/main/examples/03_fitting_options.py) | every fitting option, on and off |
+| [`04_custom_velocity_law.py`](https://github.com/claw-astro/arcwind/blob/main/examples/04_custom_velocity_law.py) | your own velocity law |
+| [`05_ring_fits_full_rings.py`](https://github.com/claw-astro/arcwind/blob/main/examples/05_ring_fits_full_rings.py) | per-cut ring fits (Louvet et al. 2018) |
+| [`06_low_level_api.py`](https://github.com/claw-astro/arcwind/blob/main/examples/06_low_level_api.py) | the building blocks |
+| [`07_hh30_like_both_lobes.py`](https://github.com/claw-astro/arcwind/blob/main/examples/07_hh30_like_both_lobes.py) | an HH 30-like bipolar wind |
+| [`08`–`10`](https://github.com/claw-astro/arcwind/tree/main/examples/) | schematic figures of the model |
+| [`11_elias20_cut_range_test.py`](https://github.com/claw-astro/arcwind/blob/main/examples/11_elias20_cut_range_test.py) | Elias 2-20: all cuts vs cuts up to y = 2.0" |
 
 ## Documentation
 
 The documentation (concepts, the analysis step by step, every fitting option,
-the configuration reference, tutorials and the API) is in [`docs/`](docs/) and
+the configuration reference, tutorials and the API) is in [`docs/`](https://github.com/claw-astro/arcwind/tree/main/docs) and
 is published at **https://claw-astro.github.io/arcwind/** (or Read the Docs).
 Build it locally with:
 
@@ -158,20 +168,21 @@ tests/            pytest suite
 
 ## Citing
 
-Please cite Louvet et al. (2018, A&A 618, A120), whose method arcwind
-generalizes.
+If you use arcwind, please cite the software (GitHub: "Cite this repository",
+from [`CITATION.cff`](https://github.com/claw-astro/arcwind/blob/main/CITATION.cff))
+and Louvet et al. (2018, A&A 618, A120), whose method arcwind generalizes.
 
 ## Contributing, support and governance
 
 Questions, bug reports and contributions are welcome through the
 [issue tracker](https://github.com/claw-astro/arcwind/issues).
 
-- [CONTRIBUTING.md](CONTRIBUTING.md): how to report a problem, set up a
+- [CONTRIBUTING.md](https://github.com/claw-astro/arcwind/blob/main/CONTRIBUTING.md): how to report a problem, set up a
   development copy, and propose a change (tests, style, pull requests).
-- [SUPPORT.md](SUPPORT.md): where to get help and what response to expect.
-- [GOVERNANCE.md](GOVERNANCE.md): who maintains the package and how decisions
+- [SUPPORT.md](https://github.com/claw-astro/arcwind/blob/main/SUPPORT.md): where to get help and what response to expect.
+- [GOVERNANCE.md](https://github.com/claw-astro/arcwind/blob/main/GOVERNANCE.md): who maintains the package and how decisions
   and releases are made.
-- [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md): the Code of Conduct.
+- [CODE_OF_CONDUCT.md](https://github.com/claw-astro/arcwind/blob/main/CODE_OF_CONDUCT.md): the Code of Conduct.
 
 ## Acknowledgments
 
@@ -185,4 +196,4 @@ structure and interfaces of the package.
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT — see [LICENSE](https://github.com/claw-astro/arcwind/blob/main/LICENSE).

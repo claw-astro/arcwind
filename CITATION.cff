@@ -17,7 +17,8 @@ authors:
 repository-code: "https://github.com/claw-astro/arcwind"
 url: "https://claw-astro.github.io/arcwind/"
 license: MIT
-version: "0.3.0"
+version: "1.0.0"
+date-released: "2026-11-24"
 keywords:
   - astronomy
   - protoplanetary disks
