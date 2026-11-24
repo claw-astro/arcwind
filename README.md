@@ -7,8 +7,8 @@
 
 [![tests](https://github.com/claw-astro/arcwind/actions/workflows/tests.yml/badge.svg)](https://github.com/claw-astro/arcwind/actions/workflows/tests.yml)
 [![docs](https://github.com/claw-astro/arcwind/actions/workflows/docs.yml/badge.svg)](https://claw-astro.github.io/arcwind/)
-[![PyPI](https://img.shields.io/pypi/v/arcwind.svg)](https://pypi.org/project/arcwind/)
-[![Python](https://img.shields.io/pypi/pyversions/arcwind.svg)](https://pypi.org/project/arcwind/)
+[![PyPI](https://img.shields.io/pypi/v/arcwind.svg?cacheSeconds=3600)](https://pypi.org/project/arcwind/)
+[![Python](https://img.shields.io/pypi/pyversions/arcwind.svg?cacheSeconds=3600)](https://pypi.org/project/arcwind/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/claw-astro/arcwind/blob/main/LICENSE)
 
 **arcwind** (Analysis of Resolved Conical Winds In Nascent Disks) measures the
