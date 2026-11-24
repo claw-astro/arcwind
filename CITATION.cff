@@ -1,0 +1,52 @@
+cff-version: 1.2.0
+message: "If you use arcwind, please cite it using the metadata below, and cite Louvet et al. (2018), whose method it implements."
+title: "arcwind: Analysis of Resolved Conical Winds In Nascent Disks"
+abstract: >-
+  arcwind measures the geometry and kinematics of protoplanetary disk winds
+  from transverse position-velocity diagrams of resolved line cubes. It extracts
+  the wind's emission in cuts perpendicular to its axis and fits a conical wind
+  model (opening angle, launch radius, poloidal velocity law and rotation) to all
+  cuts at once, at any inclination, with model comparison and bootstrap
+  uncertainties.
+type: software
+authors:
+  - family-names: Law
+    given-names: Charles J.
+    orcid: "https://orcid.org/0000-0003-1413-1776"
+    affiliation: University of Minnesota
+repository-code: "https://github.com/claw-astro/arcwind"
+url: "https://claw-astro.github.io/arcwind/"
+license: MIT
+version: "0.3.0"
+keywords:
+  - astronomy
+  - protoplanetary disks
+  - disk winds
+  - molecular outflows
+  - ALMA
+  - position-velocity diagrams
+references:
+  - type: article
+    title: "The HH30 edge-on T Tauri star. A rotating and precessing monopolar outflow scrutinized by ALMA"
+    authors:
+      - family-names: Louvet
+        given-names: F.
+      - family-names: Dougados
+        given-names: C.
+      - family-names: Cabrit
+        given-names: S.
+      - family-names: Mardones
+        given-names: D.
+      - family-names: Ménard
+        given-names: F.
+      - family-names: Tabone
+        given-names: B.
+      - family-names: Pinte
+        given-names: C.
+      - family-names: Dent
+        given-names: W. R. F.
+    journal: "Astronomy & Astrophysics"
+    volume: 618
+    start: A120
+    year: 2018
+    doi: "10.1051/0004-6361/201731733"
